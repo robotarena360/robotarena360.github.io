@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="RobotArena&#8734; 360 turns a single image of a real manipulation environment into a fully 3D interactive digital twin, and uses a coding agent to author deterministic success and progress evaluators over privileged simulator state.">
+  <meta name="keywords" content="RobotArena, robot evaluation, real-to-sim, digital twin, VLA, DROID, benchmark, agentic scoring">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RobotArena&#8734; 360</title>
+
+  <!-- Social / link preview. TODO: drop a 1200x630 png at static/images/social_preview.png -->
+  <meta property="og:title" content="RobotArena&#8734; 360: Open-World Robot Evaluation with Simulation-Native Agentic Scoring">
+  <meta property="og:description" content="Single-image digital twins plus agent-authored evaluators for scalable robot policy evaluation.">
+  <meta property="og:image" content="https://robotarena360.github.io/static/images/social_preview.png">
+  <meta property="og:url" content="https://robotarena360.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RobotArena&#8734; 360">
+  <meta name="twitter:description" content="Single-image digital twins plus agent-authored evaluators for scalable robot policy evaluation.">
+  <meta name="twitter:image" content="https://robotarena360.github.io/static/images/social_preview.png">
+
+  <!-- TODO(analytics): paste your Google Analytics snippet here, or delete this comment. -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="side-nav" aria-label="Section navigation">
+  <div class="nav-label">Contents</div>
+  <ul>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#environments">Environments</a></li>
+    <li><a href="#method">Method</a></li>
+    <li><a href="#leaderboard">Leaderboard</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#BibTeX">BibTeX</a></li>
+  </ul>
+</nav>
+
+<div class="page-body">
+
+
+<header class="hero-header" id="top">
+  <div class="hero-inner">
+    <h1 class="paper-title">RobotArena<span class="infinity">&#8734;</span> 360</h1>
+    <p class="paper-tagline">
+      Open-World Robot Evaluation with Simulation-Native Agentic Scoring
+    </p>
+
+    <hr class="byline-rule">
+
+    <!-- TODO(authors): wrap each name in <a href="homepage"> when you have URLs.
+         For equal contribution add <sup>*</sup> after the name and uncomment the
+         note below. -->
+    <ul class="author-list">
+      <li>Pang-Chi Lo</li>
+      <li>Kashu Yamazaki</li>
+      <li>Yash Jangir</li>
+      <li>Brian Yang</li>
+      <li>Yidi Zhang</li>
+      <li>Katerina Fragkiadaki</li>
+    </ul>
+
+    <p class="affiliation">Carnegie Mellon University</p>
+    <!-- <p class="affiliation" style="text-transform:none;letter-spacing:0;font-weight:400;">
+         <sup>*</sup>Equal contribution</p> -->
+
+    <!-- TODO(venue): uncomment once accepted.
+    <div class="venue-badge">ICRA 2027</div>
+    -->
+
+    <!-- TODO(links): when a resource goes live, swap its <span class="is-soon"
+         aria-disabled="true"> for <a href="URL"> and delete the "Soon" tag. -->
+    <div class="paper-links">
+      <span class="is-soon" aria-disabled="true">
+        <span class="icon"><i class="fas fa-file-pdf"></i></span>
+        <span>Paper</span><span class="soon-tag">Soon</span>
+      </span>
+      <span class="is-soon" aria-disabled="true">
+        <span class="icon"><i class="ai ai-arxiv"></i></span>
+        <span>arXiv</span><span class="soon-tag">Soon</span>
+      </span>
+      <span class="is-soon" aria-disabled="true">
+        <span class="icon"><i class="fab fa-github"></i></span>
+        <span>Code</span><span class="soon-tag">Soon</span>
+      </span>
+    </div>
+  </div>
+</header>
+
+
+<!-- =====================================================================
+     TEASER
+     ===================================================================== -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- TODO(teaser): if you have a teaser video, swap this <img> for:
+           <video id="teaser" autoplay muted loop playsinline width="100%">
+             <source src="./static/videos/teaser.mp4" type="video/mp4"></video> -->
+      <img src="./static/images/teaser.png"
+           alt="Overview of RobotArena 360: single reference images become interactable 3D simulation environments, and a coding agent authors stage-wise scoring functions.">
+      <h2 class="subtitle has-text-centered">
+        From single reference images of real-world robot recordings, our pipeline constructs
+        diverse, interactable 3D simulation environments for policy evaluation. For each task,
+        a coding agent decomposes the instruction into stages and authors deterministic scoring
+        functions that report both terminal success and continuous progress.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     ABSTRACT
+     ===================================================================== -->
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content">
+          <p>
+            Evaluating robot policies at scale remains a fundamental bottleneck: real-world
+            testing is costly and difficult to reproduce, while simulation benchmarks require
+            substantial environment engineering and manually designed task evaluators. We
+            introduce <b>RobotArena&#8734; 360</b>, a framework for scalable, simulation-native
+            evaluation of robot policies. Given a single image of a real manipulation
+            environment, RobotArena&#8734; 360 constructs a fully 3D interactive digital twin by
+            combining generative 3D reconstruction with metric alignment and collision-aware
+            geometry, supporting arbitrary camera viewpoints including wrist cameras and exposing
+            privileged physical state for evaluation. We further introduce <b>agentic scoring</b>:
+            rather than using foundation models to directly judge rollout videos, a coding agent
+            translates natural-language tasks into deterministic programs over simulator state.
+            These programs decompose tasks into interpretable physical milestones and measure both
+            binary success and continuous progress without model inference at evaluation time. We
+            instantiate 20 environments from DROID and benchmark six state-of-the-art policies
+            spanning diverse architectures. Our experiments reveal substantial differences between
+            policies that are obscured by binary success alone, identify important sources of
+            simulation-evaluation mismatch, including shadows, controller dynamics, and inference
+            latency, and show that agent-generated evaluators agree more closely with human
+            judgments than VLM-based scoring. Together, RobotArena&#8734; 360 turns existing robot
+            datasets into programmable evaluation platforms even under limited camera views or
+            lack of complete environment or object scans, while substantially reducing human
+            effort and cost.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     RECONSTRUCTED ENVIRONMENTS
+     The interactive preview is still stubbed — waiting on source.
+     Keep the option that matches what you send and delete the other two.
+     ===================================================================== -->
+<section class="hero is-light is-small" id="environments">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Reconstructed Environments</h2>
+      <div class="content">
+        <p>
+          Each environment starts from a <b>single reference image</b> of a real manipulation
+          scene. We decompose the image into task-relevant objects and a static background,
+          reconstruct object assets and a full-scene 3D Gaussian background, recover collision
+          geometry and stable support surfaces, and metrically align everything to the simulator
+          camera and robot workspace. Because the result is a true 3D scene rather than a planar
+          backdrop, it supports arbitrary viewpoints &mdash; including wrist-mounted cameras
+          &mdash; and the surrounding surfaces participate physically in manipulation.
+        </p>
+        <p>
+          We instantiate <b>20 environments</b> from <a href="https://droid-dataset.github.io/">DROID</a>,
+          which means existing robot recordings can be repurposed into reusable evaluation
+          environments with no dedicated scene scan. All environments run in
+          <a href="#">Eden</a>, a <a href="https://genesis-embodied-ai.github.io/">Genesis</a>-based
+          platform with Gaussian-scene rendering via the Nyx ray tracer, and use a Franka FR3 with
+          a Robotiq 2F-85 gripper.
+        </p>
+      </div>
+
+      <div class="env-preview">
+        <!-- OPTION A — embedded interactive viewer (Gaussian splat / mesh).
+        <iframe class="env-viewer" src="./static/viewer/index.html?scene=scene01"
+                allow="fullscreen; xr-spatial-tracking" loading="lazy"></iframe>
+        -->
+
+        <!-- OPTION B — pre-rendered orbit video per scene.
+        <video class="env-viewer" autoplay muted loop playsinline controls>
+          <source src="./static/videos/env_orbit.mp4" type="video/mp4">
+        </video>
+        -->
+
+        <!-- OPTION C — frame-sequence scrubber, Nerfies-style (drag to orbit).
+             Frames go in static/interpolation/<scene>/000000.jpg ...
+        <div id="env-image-wrapper">Loading...</div>
+        <input class="slider is-fullwidth is-large is-info" id="env-slider"
+               step="1" min="0" max="119" value="0" type="range">
+        -->
+
+        <div class="placeholder">
+          <span>Interactive environment preview &mdash; send me the source (splat viewer,
+            orbit renders, or a frame sequence) and I'll wire up option A, B, or C.</span>
+        </div>
+        <p class="env-caption">TODO: caption naming the scene and its source DROID recording.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     METHOD
+     ===================================================================== -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+
+        <img src="./static/images/method.png"
+             alt="RobotArena 360 pipeline: scene decomposition and digital twinning on the left, agentic evaluator synthesis on the right.">
+        <p class="table-caption has-text-centered">
+          <b>(a)</b> Given a single reference image, we decompose the scene into task-relevant
+          objects and a static background, reconstruct object assets and background entities, and
+          jointly optimize their placement, pose, scale, and support surfaces to produce an
+          interactable 3D digital twin. <b>(b)</b> Given a task instruction, privileged simulation
+          states, and rollout observations, the coding agent specifies task stages, primitives,
+          weights, and terminal conditions. The resulting evaluator uses a strict channel for
+          binary success and a soft channel for continuous progress.
+        </p>
+
+        <div class="content">
+          <h3 class="title is-4">Real-to-sim transfer with an interactable background</h3>
+          <p>
+            Building on RobotArena&#8734;'s foreground-object pipeline, we pair task assets with a
+            full-scene 3D Gaussian background. Recovering collision meshes and fitting stable
+            operation-surface planes makes that background physically usable rather than
+            decorative, and a pose-and-scale alignment step puts the reconstruction in metric
+            correspondence with the simulator camera and robot workspace. The single-image
+            requirement is what lets the benchmark grow: users can reconstruct and share their own
+            workspaces, and datasets that lack dedicated scans still become evaluation
+            environments.
+          </p>
+
+          <h3 class="title is-4">Agentic progress scoring</h3>
+          <p>
+            Realistic environments alone do not solve scoring. Given an instruction and sample
+            trajectories, a coding agent resolves object references, decomposes the task into
+            physical milestones, and authors geometric and temporal scoring functions over
+            privileged simulator state. Video is consulted only when scene context or spatial
+            annotations are ambiguous. Once frozen, the evaluator runs deterministically over the
+            state stream &mdash; online or from recorded rollouts &mdash; with no further model
+            inference.
+          </p>
+          <p>
+            The evaluator emits a binary success verdict alongside a continuous progress score, so
+            you learn not just whether a task succeeded but how far it got, and milestone traces
+            show exactly where execution stalled. Because the coding agent is invoked once per
+            task rather than once per rollout, synthesis cost amortizes across the whole benchmark.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     LEADERBOARD
+     Columns are sortable: click a header. Numeric columns need
+     data-sort="numeric"; the rank column renumbers itself.
+     ===================================================================== -->
+<section class="section" id="leaderboard">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Leaderboard</h2>
+    <div class="content">
+      <p>
+        Six state-of-the-art generalist policies across 20 DROID-reconstructed environments.
+        Each policy uses its official DROID-finetuned checkpoint with no adaptation to our
+        environments, absolute joint-position control, and six rollouts per task over 1200
+        simulation steps. All policies share the same simulation parameters, robot configuration,
+        and camera setup, except that Cosmos3 receives one additional view to match its native
+        inference configuration.
+      </p>
+    </div>
+
+    <div class="leaderboard-wrapper">
+      <table class="table is-striped is-hoverable leaderboard">
+        <thead>
+          <tr>
+            <th class="no-sort numeric">#</th>
+            <th>Policy</th>
+            <th class="numeric" data-sort="numeric">Success Rate (%)</th>
+            <th class="numeric" data-sort="numeric">Mean Progress</th>
+            <th class="numeric" data-sort="numeric">Tasks Solved</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank numeric"></td>
+            <td>Cosmos3</td>
+            <td class="numeric">54</td>
+            <td class="numeric">0.63</td>
+            <td class="numeric">14 / 21</td>
+          </tr>
+          <tr>
+            <td class="rank numeric"></td>
+            <td>MolmoAct-2</td>
+            <td class="numeric">45</td>
+            <td class="numeric">0.59</td>
+            <td class="numeric">14 / 21</td>
+          </tr>
+          <tr>
+            <td class="rank numeric"></td>
+            <td>Galaxea G0.5</td>
+            <td class="numeric">33</td>
+            <td class="numeric">0.46</td>
+            <td class="numeric">11 / 21</td>
+          </tr>
+          <tr>
+            <td class="rank numeric"></td>
+            <td>&pi;<sub>0.5</sub></td>
+            <td class="numeric">26</td>
+            <td class="numeric">0.43</td>
+            <td class="numeric">10 / 21</td>
+          </tr>
+          <tr>
+            <td class="rank numeric"></td>
+            <td>GR00T-N1.7</td>
+            <td class="numeric">14</td>
+            <td class="numeric">0.26</td>
+            <td class="numeric">8 / 21</td>
+          </tr>
+          <tr>
+            <td class="rank numeric"></td>
+            <td>&pi;<sub>0</sub>-FAST</td>
+            <td class="numeric">8</td>
+            <td class="numeric">0.14</td>
+            <td class="numeric">4 / 21</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-caption">
+      Values from Fig. 8(a) of the paper: six rollouts per task across 20 environments.
+      Click any column header to sort.
+    </p>
+
+    <div class="content">
+      <h3 class="title is-4">Submitting to the leaderboard</h3>
+      <p>
+        TODO: link the eval harness, state the expected result format, and say where to open a
+        PR or send results.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     RESULTS
+     ===================================================================== -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Results</h2>
+
+    <h3 class="title is-4">Policy benchmark and stage-wise traces</h3>
+    <img src="./static/images/benchmark.png"
+         alt="Binary success rates and mean progress across policies, with stage-wise trajectory traces.">
+    <p class="table-caption">
+      <b>(a)</b> Binary success rates and mean progress scores across evaluated policies.
+      <b>(b,c)</b> Successful rollouts progress through the task milestones.
+      <b>(d,e)</b> Two rollouts stall at lifting but receive different progress scores; brief
+      peaks are marked separately from episode scores.
+    </p>
+    <div class="content">
+      <p>
+        Success and progress give the same policy ordering but describe different things:
+        success measures completion, progress also credits advances in rollouts that fail. Two
+        rollouts can share the same binary outcome <i>and</i> the same failed milestone and still
+        be distinguished &mdash; GR00T-N1.7 earns more partial credit than
+        &pi;<sub>0</sub>-FAST when both stall at lifting.
+      </p>
+    </div>
+
+    <br>
+
+    <h3 class="title is-4">Deployment fidelity and policy sensitivity</h3>
+    <img class="fig-column" src="./static/images/gains_receiver.png"
+         alt="Success and progress under stock vs system-identified PD gains, and under textured-mesh vs Gaussian-composite shadow rendering.">
+    <p class="table-caption">
+      <b>(a,b)</b> Success and mean progress with stock PD gains versus a shared set obtained
+      through system identification. <b>(c,d)</b> The same metrics under textured-mesh and
+      Gaussian-composite shadow rendering. <b>(e)</b> Example observations under the two
+      rendering configurations. Error bars show 95% confidence intervals.
+    </p>
+    <div class="content">
+      <p>
+        <b>Shadows.</b> The two rendering configurations favor different policies. MolmoAct-2 does
+        better with Gaussian compositing, &pi;<sub>0.5</sub> with the textured receiver, and
+        GR00T-N1.7 barely moves. <b>Controller gains.</b> System-identified gains lower mean
+        success and progress for all three tested policies, with larger declines for MolmoAct-2
+        and GR00T-N1.7. Policies differ in how sensitive they are to the same adjustment, which is
+        an argument for robustness checks alongside calibration.
+      </p>
+    </div>
+
+    <br>
+
+    <img class="fig-column" src="./static/images/async.png"
+         alt="Success and progress under blocking versus asynchronous execution at different real-time ratios.">
+    <p class="table-caption">
+      <b>Sensitivity to asynchronous execution.</b> Success and mean progress on a 7-task subset
+      under a blocking reference and asynchronous execution. &pi;<sub>0.5</sub> is evaluated at
+      real-time ratios of 1 and 3, &pi;<sub>0</sub>-FAST at 1. Error bars show 95% confidence
+      intervals.
+    </p>
+    <div class="content">
+      <p>
+        Asynchronous execution advances the simulation while the policy computes its next action,
+        so commands can land after the state that prompted them has changed. The response is not
+        uniform degradation: at a real-time ratio of 1 both policies score <i>above</i> the
+        blocking reference, and raising the ratio to 3 pulls &pi;<sub>0.5</sub> back down while
+        still leaving it above blocking.
+      </p>
+    </div>
+
+    <br>
+
+    <h3 class="title is-4">Validation of synthesized evaluators</h3>
+    <div>
+      <div>
+        <img class="fig-column" src="./static/images/evaluator_validation.png"
+             alt="Agreement of the synthesized evaluator and GVL with human progress scores.">
+      </div>
+    </div>
+    <p class="table-caption">
+      <b>Agreement with human progress scores on RobotArena&#8734;.</b> <b>(a)</b> Predicted versus
+      human scores for our evaluator and GVL. <b>(b,c)</b> Pearson, Spearman, and Kendall
+      correlations and mean squared error, for our evaluator versus GVL scores averaged over the
+      trajectory or taken from its final frame.
+    </p>
+    <div class="content">
+      <p>
+        Applying the same synthesis procedure to RobotArena&#8734; tasks, the generated evaluators
+        agree with human judgments more closely than both GVL variants &mdash; higher Pearson,
+        Spearman, and Kendall correlations and lower mean squared error. The cost profile differs
+        too: GVL needs VLM inference for every trajectory, while our evaluator is frozen after
+        synthesis and runs deterministically over simulator state.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================================================================
+     BIBTEX
+     ===================================================================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <!-- TODO(bibtex): replace once the arXiv ID / venue is known. -->
+    <pre><code>@article{lo2026robotarena360,
+  title   = {RobotArena$\infty$ 360: Open-World Robot Evaluation with
+             Simulation-Native Agentic Scoring},
+  author  = {Lo, Pang-Chi and Yamazaki, Kashu and Jangir, Yash and
+             Yang, Brian and Zhang, Yidi and Fragkiadaki, Katerina},
+  journal = {arXiv preprint arXiv:TODO},
+  year    = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+            Attribution-ShareAlike 4.0 International License</a>.
+            It is adapted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+            project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.page-body -->
+
+</body>
+</html>

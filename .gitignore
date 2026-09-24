@@ -1,0 +1,7 @@
+.DS_Store
+._*
+Icon?
+*.swp
+
+# unreleased paper — do not publish yet
+static/pdfs/paper.pdf

@@ -1,0 +1,755 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+
+.interpolation-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.interpolation-panel .interpolation-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.interpolation-video-column {
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+}
+#interpolation-image-wrapper img {
+  border-radius: 5px;
+}
+
+/* ---------------------------------------------------------------
+   RobotArena 360 additions (beyond the stock Nerfies stylesheet)
+   --------------------------------------------------------------- */
+
+.hero-links .button {
+  margin: 4px;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 220px;
+  padding: 2rem;
+  color: #8a8a8a;
+  background: repeating-linear-gradient(45deg, #f5f3ee, #f5f3ee 10px, #efece5 10px, #efece5 20px);
+  border: 2px dashed #d6d0c5;
+  border-radius: 10px;
+  font-family: 'Google Sans', sans-serif;
+}
+
+.placeholder code {
+  background: rgba(0, 0, 0, 0.06);
+  color: #555;
+}
+
+/* --- Leaderboard --- */
+.leaderboard-wrapper {
+  overflow-x: auto;
+}
+
+table.leaderboard {
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+table.leaderboard thead th {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  border-bottom: 2px solid #363636;
+}
+
+table.leaderboard thead th:hover {
+  background: var(--panel);
+}
+
+table.leaderboard thead th::after {
+  content: ' \2195';
+  opacity: 0.25;
+}
+
+table.leaderboard thead th.sort-asc::after {
+  content: ' \25B2';
+  opacity: 1;
+}
+
+table.leaderboard thead th.sort-desc::after {
+  content: ' \25BC';
+  opacity: 1;
+}
+
+table.leaderboard thead th.no-sort {
+  cursor: default;
+}
+
+table.leaderboard thead th.no-sort::after {
+  content: '';
+}
+
+table.leaderboard tbody tr.is-ours {
+  background: var(--accent-2-tint);
+  font-weight: 600;
+}
+
+table.leaderboard td.numeric,
+table.leaderboard th.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Reconstructed environment preview --- */
+.env-preview {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.env-viewer {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 8px;
+  background: #111;
+}
+
+.env-caption {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* --- Results tables --- */
+.results-table {
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.results-table td.numeric,
+.results-table th.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.results-table .best {
+  font-weight: 700;
+}
+
+.results-table .second-best {
+  text-decoration: underline;
+}
+
+.table-caption {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+/* ===============================================================
+   Layout, sidebar and hero. Last in the file so these win over
+   the stock Bulma/Nerfies rules above.
+   =============================================================== */
+
+:root {
+  --nav-w: 244px;
+  /* Warm paper + ink, with a two-tone accent taken from the teaser figure:
+     teal = reconstructed "Simulated Worlds", orange = "Agentic Scoring".
+     Deliberately outside RobotArena∞'s indigo (#485fc7) family. */
+  --ink: #1c1a17;
+  --ink-2: #33302b;
+  --body: #4d4943;
+  --muted: #716c65;
+  --faint: #aba59c;
+  --line: #e7e3dc;
+  --line-soft: #f1eee8;
+  --accent: #0f766e;
+  --accent-hover: #0b5f58;
+  --accent-tint: #e8f3f1;
+  --accent-2: #d9621a;
+  --accent-2-tint: #fcefe5;
+  --accent-2-text: #b04d10;
+  --bg: #fbfaf7;
+  --panel: #f5f3ee;
+  --mono: 'SFMono-Regular', ui-monospace, Menlo, Consolas, monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--body);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------------------------------------------------------
+   CONTENTS RAIL
+   Plain text in the left gutter with a hairline track. Hidden over
+   the hero and faded in once the reader reaches the content, so it
+   never competes with the title. Content stays centred.
+   --------------------------------------------------------------- */
+.side-nav {
+  position: fixed;
+  top: 7.5rem;
+  left: max(2.2rem, calc(50vw - 480px - 14.5rem));
+  width: 11rem;
+  z-index: 40;
+  opacity: 0;
+  transform: translateX(-6px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.side-nav.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.nav-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.9rem 1.05rem;
+}
+
+.side-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--line);
+}
+
+.side-nav ul a {
+  position: relative;
+  display: block;
+  padding: 0.38rem 0 0.38rem 1.05rem;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: var(--body);
+  transition: color 0.15s ease;
+}
+
+/* Active marker sits on top of the track line. */
+.side-nav ul a::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  width: 2px;
+  border-radius: 2px;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.side-nav ul a:hover { color: var(--ink); }
+.side-nav ul a:hover::before { background: #d6d0c5; }
+
+.side-nav ul a.is-current { color: var(--ink); font-weight: 600; }
+.side-nav ul a.is-current::before { background: var(--accent); }
+
+.page-body { margin-left: 0; }
+
+/* Too narrow for a gutter rail: turn it into a sticky strip instead. */
+@media screen and (max-width: 1279px) {
+  .side-nav,
+  .side-nav.is-visible {
+    position: sticky;
+    top: 0;
+    left: auto;
+    width: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 1rem;
+    background: rgba(251, 250, 247, 0.92);
+    backdrop-filter: saturate(180%) blur(8px);
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+  }
+  .nav-label { margin: 0; white-space: nowrap; }
+  .side-nav ul { display: flex; gap: 0.2rem; border-left: 0; }
+  .side-nav ul a { white-space: nowrap; padding: 0.3rem 0.65rem; }
+  .side-nav ul a::before { left: 0.65rem; right: 0.65rem; top: auto;
+                           bottom: -0.62rem; width: auto; height: 2px; }
+}
+
+/* ---------------------------------------------------------------
+   HERO
+   --------------------------------------------------------------- */
+.hero-header {
+  position: relative;
+  padding: 6rem 1.5rem 3.6rem;
+  background:
+    radial-gradient(60% 110% at 50% -10%, rgba(15,118,110,0.07) 0%, rgba(251,250,247,0) 60%),
+    radial-gradient(40% 80% at 85% 0%, rgba(217,98,26,0.05) 0%, rgba(251,250,247,0) 60%),
+    var(--bg);
+  overflow: hidden;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.6rem;
+  padding: 0.33rem 0.85rem 0.33rem 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 0.735rem;
+  font-weight: 600;
+  letter-spacing: 0.085em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.paper-title {
+  font-family: 'Google Sans', sans-serif;
+  font-size: clamp(2.75rem, 6.4vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.038em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.paper-title .infinity {
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--accent-2);
+  padding: 0 0.015em;
+}
+
+.paper-tagline {
+  font-family: 'Google Sans', sans-serif;
+  font-size: clamp(1.06rem, 2.1vw, 1.36rem);
+  font-weight: 400;
+  line-height: 1.42;
+  letter-spacing: -0.012em;
+  color: var(--ink-2);
+  max-width: 780px;
+  margin: 1.15rem auto 0;
+  text-wrap: balance;
+}
+
+/* Hairline rule separating the paper from the byline. */
+.byline-rule {
+  width: 46px;
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin: 2.5rem auto 2rem;
+}
+
+.author-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 1.55rem;
+  row-gap: 0.5rem;
+  font-size: 1.015rem;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.author-list li { position: relative; }
+
+.author-list li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -0.85rem;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 50%;
+  background: #d3cdc3;
+}
+
+.author-list a {
+  color: var(--ink-2);
+  border-bottom: 1px solid #ddd7cd;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.author-list a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.author-list sup { font-size: 0.66em; color: var(--muted); margin-left: 0.08em; }
+
+.affiliation {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.115em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.venue-badge {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  background: var(--accent-tint);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* --- Hero link buttons ------------------------------------------ */
+.paper-links {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.paper-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.915rem;
+  font-weight: 500;
+  transition: background 0.16s ease, border-color 0.16s ease,
+              transform 0.16s ease, box-shadow 0.16s ease, color 0.16s ease;
+}
+
+.paper-links a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.22);
+}
+
+.paper-links a .icon { font-size: 0.95em; }
+
+/* Not-yet-live links read as quiet outlines. */
+.paper-links a.is-pending {
+  background: rgba(255,255,255,0.55);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+.paper-links a.is-pending:hover {
+  background: #fff;
+  border-color: #d6d0c5;
+  color: var(--ink-2);
+  box-shadow: none;
+  transform: none;
+}
+
+/* ---------------------------------------------------------------
+   BODY TYPE
+   --------------------------------------------------------------- */
+.title, .subtitle { font-family: 'Google Sans', sans-serif; }
+
+.section { padding: 3.6rem 1.5rem; }
+
+.section .title.is-3 {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.72rem;
+  letter-spacing: -0.022em;
+  margin-bottom: 1.4rem;
+}
+
+.section .title.is-4 {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1.14rem;
+  letter-spacing: -0.012em;
+}
+
+.content { font-size: 1.005rem; line-height: 1.72; color: var(--body); }
+.content a { color: var(--accent); }
+.content a:hover { text-decoration: underline; }
+.content b, .content strong { color: var(--ink-2); font-weight: 600; }
+
+.teaser .subtitle {
+  color: var(--muted);
+  font-size: 0.925rem;
+  line-height: 1.62;
+  max-width: 56em;
+  margin: 1.2rem auto 0;
+}
+
+.table-caption {
+  font-size: 0.855rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 0.7rem;
+}
+
+.hero.is-light { background: var(--panel); }
+
+pre {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+
+.footer {
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+/* --- Figures and rhythm ----------------------------------------- */
+/* Single-column paper figures stay near their native width instead
+   of being blown up to the full content column. */
+.fig-column {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section img { border-radius: 4px; }
+
+.table-caption {
+  max-width: 820px;
+  margin: 0.8rem auto 2rem;
+  text-align: center;
+}
+
+.section .title.is-4 { margin-top: 2.6rem; margin-bottom: 1rem; }
+.section .title.is-3 + .title.is-4,
+.section .title.is-3 + img { margin-top: 0; }
+
+.content p { text-align: left; }
+
+
+/* --- Colour scheme touches -------------------------------------- */
+.content a:hover { color: var(--accent-hover); }
+.paper-links a:hover { background: var(--accent); border-color: var(--accent); }
+.author-list a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Bulma's striped/hover tables are cool grey by default. */
+.table { background: transparent; color: var(--body); }
+.table thead th { color: var(--ink); border-bottom-color: var(--ink) !important; }
+.table td, .table th { border-color: var(--line); }
+.table.is-striped tbody tr:not(.is-selected):nth-child(even) { background: var(--panel); }
+.table.is-hoverable tbody tr:not(.is-selected):hover { background: var(--accent-tint) !important; }
+
+/* Top-ranked policy gets a quiet orange marker on its rank. */
+table.leaderboard tbody tr:first-child td.rank { color: var(--accent-2-text); font-weight: 700; }
+
+.hero.is-light { background: var(--panel); }
+.footer { background: var(--panel); }
+
+html { background-color: var(--bg); }
+
+/* Paper figures have white backgrounds; present them as white cards
+   on the warm page instead of letting them read as stray rectangles. */
+.teaser img,
+.section img {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 1px 2px rgba(28, 26, 23, 0.04), 0 8px 24px -12px rgba(28, 26, 23, 0.10);
+}
+
+/* --- "Coming soon" resource buttons ------------------------------ */
+.paper-links .is-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem 0.6rem 1.15rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink-2);
+  font-size: 0.915rem;
+  font-weight: 500;
+  cursor: default;
+  user-select: none;
+}
+.paper-links .is-soon .icon { font-size: 0.95em; color: var(--muted); }
+.soon-tag {
+  margin-left: 0.2rem;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  background: var(--accent-2-tint);
+  color: var(--accent-2-text);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
