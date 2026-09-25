@@ -1,37 +1,9 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-<circle style="fill:#FFDA44;" cx="256" cy="256" r="256"/>
-<path style="fill:#338AF3;" d="M0,256C0,114.616,114.616,0,256,0s256,114.616,256,256"/>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- RobotArena∞ 360: the title's orange ∞ inside a teal "360" orbit,
+       on the page's warm ink. Tuned to stay legible at 16px. -->
+  <rect width="64" height="64" rx="14" fill="#1c1a17"/>
+  <circle cx="32" cy="32" r="23" fill="none" stroke="#0f766e" stroke-width="3.5"
+          stroke-dasharray="118 26.5" stroke-linecap="round" transform="rotate(-62 32 32)"/>
+  <path d="M32 32 C27.5 25.5 17 25 17 32 C17 39 27.5 38.5 32 32 C36.5 25.5 47 25 47 32 C47 39 36.5 38.5 32 32 Z"
+        fill="none" stroke="#e8742b" stroke-width="5" stroke-linejoin="round"/>
 </svg>

@@ -885,3 +885,8 @@ html { background-color: var(--bg); }
 }
 .lb-head .lb-name { text-align: right; }
 .lb-head .lb-solved { text-align: center; }
+
+/* --- Method: one figure per part, original prose below each --- */
+.method-part + .method-part { margin-top: 3.2rem; }
+.method-part .title.is-4 { margin-top: 0.4rem; }
+.method-part img { margin-bottom: 1.2rem; }

@@ -26,11 +26,12 @@
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="./static/images/favicon.svg">
+  <link rel="apple-touch-icon" href="./static/images/apple-touch-icon.png">
+  <meta name="theme-color" content="#fbfaf7">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -236,20 +237,10 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Method</h2>
 
-        <img src="./static/images/method.png"
-             alt="RobotArena 360 pipeline: scene decomposition and digital twinning on the left, agentic evaluator synthesis on the right.">
-        <p class="table-caption has-text-centered">
-          <b>(a)</b> Given a single reference image, we decompose the scene into task-relevant
-          objects and a static background, reconstruct object assets and background entities, and
-          jointly optimize their placement, pose, scale, and support surfaces to produce an
-          interactable 3D digital twin. <b>(b)</b> Given a task instruction, privileged simulation
-          states, and rollout observations, the coding agent specifies task stages, primitives,
-          weights, and terminal conditions. The resulting evaluator uses a strict channel for
-          binary success and a soft channel for continuous progress.
-        </p>
-
-        <div class="content">
+        <div class="method-part">
           <h3 class="title is-4">Real-to-sim transfer with an interactable background</h3>
+          <img src="./static/images/reconstruction.png" alt="Real-to-sim pipeline: input image, semantic decomposition, 3D object assets, background Gaussians and collision mesh, scene optimization, and the interactable digital twin.">
+          <div class="content">
           <p>
             Building on RobotArena&#8734;'s foreground-object pipeline, we pair task assets with a
             full-scene 3D Gaussian background. Recovering collision meshes and fitting stable
@@ -260,8 +251,13 @@
             workspaces, and datasets that lack dedicated scans still become evaluation
             environments.
           </p>
+          </div>
+        </div>
 
+        <div class="method-part">
           <h3 class="title is-4">Agentic progress scoring</h3>
+          <img src="./static/images/evaluation.png" alt="Evaluator synthesis: task instruction, privileged state and rollout observation feed a task specification, stage decomposition with weights, a strict success channel and a soft progress channel.">
+          <div class="content">
           <p>
             Realistic environments alone do not solve scoring. Given an instruction and sample
             trajectories, a coding agent resolves object references, decomposes the task into
@@ -277,6 +273,7 @@
             show exactly where execution stalled. Because the coding agent is invoked once per
             task rather than once per rollout, synthesis cost amortizes across the whole benchmark.
           </p>
+          </div>
         </div>
       </div>
     </div>
