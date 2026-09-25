@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RobotArena 360 — environment viewer</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #111; }
+    canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+    #status {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: #ccc; font: 14px/1.4 "Noto Sans", system-ui, sans-serif; pointer-events: none;
+    }
+    #hint {
+      position: absolute; left: 10px; bottom: 8px; color: rgba(255,255,255,.75);
+      font: 12px/1.3 "Noto Sans", system-ui, sans-serif; pointer-events: none;
+      text-shadow: 0 1px 2px rgba(0,0,0,.8);
+    }
+    #reset {
+      position: absolute; right: 10px; bottom: 8px; padding: 4px 10px; border-radius: 4px;
+      border: 1px solid rgba(255,255,255,.4); background: rgba(0,0,0,.45); color: #fff;
+      font: 12px "Noto Sans", system-ui, sans-serif; cursor: pointer;
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+        "@sparkjsdev/spark": "https://sparkjs.dev/releases/spark/2.2.0/spark.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="status">Loading scene&hellip;</div>
+  <div id="hint">Drag to orbit &middot; right-drag to pan &middot; scroll to zoom</div>
+  <button id="reset" type="button">Reset view</button>
+  <script type="module" src="./viewer.js"></script>
+</body>
+</html>

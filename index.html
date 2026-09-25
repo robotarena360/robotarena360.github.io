@@ -20,7 +20,7 @@
 
   <!-- TODO(analytics): paste your Google Analytics snippet here, or delete this comment. -->
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|Source+Sans+3:400,600"
         rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
@@ -37,6 +37,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="./static/js/figures.js"></script>
 </head>
 <body>
 
@@ -64,16 +65,15 @@
 
     <hr class="byline-rule">
 
-    <!-- TODO(authors): wrap each name in <a href="homepage"> when you have URLs.
-         For equal contribution add <sup>*</sup> after the name and uncomment the
+    <!-- For equal contribution add <sup>*</sup> after the name and uncomment the
          note below. -->
     <ul class="author-list">
-      <li>Pang-Chi Lo</li>
-      <li>Kashu Yamazaki</li>
-      <li>Yash Jangir</li>
-      <li>Brian Yang</li>
-      <li>Yidi Zhang</li>
-      <li>Katerina Fragkiadaki</li>
+      <li><a href="https://pcseanlo.github.io/">Pang-Chi Lo</a></li>
+      <li><a href="https://kashu7100.github.io/">Kashu Yamazaki</a></li>
+      <li><a href="https://offjangir.github.io/">Yash Jangir</a></li>
+      <li><a href="https://byang.org/">Brian Yang</a></li>
+      <li><a href="https://zhangyidi.tech/">Yidi Zhang</a></li>
+      <li><a href="https://www.cs.cmu.edu/~katef/">Katerina Fragkiadaki</a></li>
     </ul>
 
     <p class="affiliation">Carnegie Mellon University</p>
@@ -110,11 +110,11 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <!-- TODO(teaser): if you have a teaser video, swap this <img> for:
-           <video id="teaser" autoplay muted loop playsinline width="100%">
-             <source src="./static/videos/teaser.mp4" type="video/mp4"></video> -->
-      <img src="./static/images/teaser.png"
-           alt="Overview of RobotArena 360: single reference images become interactable 3D simulation environments, and a coding agent authors stage-wise scoring functions.">
+      <video id="teaser" autoplay muted loop playsinline controls preload="auto"
+             poster="./static/images/teaser_poster.jpg"
+             aria-label="RobotArena 360 overview: a real DROID episode is rebuilt as a physical twin, each instruction is decomposed into scored stages, and policies are evaluated rollout by rollout.">
+        <source src="./static/videos/teaser.mp4?v=3" type="video/mp4">
+      </video>
       <h2 class="subtitle has-text-centered">
         From single reference images of real-world robot recordings, our pipeline constructs
         diverse, interactable 3D simulation environments for policy evaluation. For each task,
@@ -168,8 +168,6 @@
 
 <!-- =====================================================================
      RECONSTRUCTED ENVIRONMENTS
-     The interactive preview is still stubbed — waiting on source.
-     Keep the option that matches what you send and delete the other two.
      ===================================================================== -->
 <section class="hero is-light is-small" id="environments">
   <div class="hero-body">
@@ -196,29 +194,33 @@
       </div>
 
       <div class="env-preview">
-        <!-- OPTION A — embedded interactive viewer (Gaussian splat / mesh).
-        <iframe class="env-viewer" src="./static/viewer/index.html?scene=scene01"
-                allow="fullscreen; xr-spatial-tracking" loading="lazy"></iframe>
-        -->
-
-        <!-- OPTION B — pre-rendered orbit video per scene.
-        <video class="env-viewer" autoplay muted loop playsinline controls>
-          <source src="./static/videos/env_orbit.mp4" type="video/mp4">
-        </video>
-        -->
-
-        <!-- OPTION C — frame-sequence scrubber, Nerfies-style (drag to orbit).
-             Frames go in static/interpolation/<scene>/000000.jpg ...
-        <div id="env-image-wrapper">Loading...</div>
-        <input class="slider is-fullwidth is-large is-info" id="env-slider"
-               step="1" min="0" max="119" value="0" type="range">
-        -->
-
-        <div class="placeholder">
-          <span>Interactive environment preview &mdash; send me the source (splat viewer,
-            orbit renders, or a frame sequence) and I'll wire up option A, B, or C.</span>
+        <div class="env-tabs" role="tablist" aria-label="Environment">
+          <button type="button" role="tab" class="env-tab is-active" data-scene="droid2"
+                  data-task="Put toy bear into black bowl"
+                  data-objects="black bowl, stuffed tiger, white cup, dressing bottle, toy wheel">Example 1</button>
+          <button type="button" role="tab" class="env-tab" data-scene="droid37"
+                  data-task="Move the mug to the left"
+                  data-objects="yellow mug, metal filter basket">Example 2</button>
+          <button type="button" role="tab" class="env-tab" data-scene="droid7"
+                  data-task="Pick up yellow cup"
+                  data-objects="yellow cup, pink bowl">Example 3</button>
         </div>
-        <p class="env-caption">TODO: caption naming the scene and its source DROID recording.</p>
+
+        <div class="env-stage">
+          <video class="env-viewer" id="env-video" autoplay muted loop playsinline
+                 poster="./static/images/env_droid2.jpg">
+            <source src="./static/videos/env_droid2.mp4" type="video/mp4">
+          </video>
+          <iframe class="env-viewer" id="env-3d" title="Interactive 3D environment viewer"
+                  allow="fullscreen" hidden></iframe>
+        </div>
+
+        <div class="env-bar">
+          <p class="env-caption" id="env-caption"></p>
+          <button type="button" class="button is-small env-mode" id="env-mode">
+            <span class="icon"><i class="fas fa-cube"></i></span><span>Explore in 3D</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -301,68 +303,26 @@
       </p>
     </div>
 
-    <div class="leaderboard-wrapper">
-      <table class="table is-striped is-hoverable leaderboard">
-        <thead>
-          <tr>
-            <th class="no-sort numeric">#</th>
-            <th>Policy</th>
-            <th class="numeric" data-sort="numeric">Success Rate (%)</th>
-            <th class="numeric" data-sort="numeric">Mean Progress</th>
-            <th class="numeric" data-sort="numeric">Tasks Solved</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="rank numeric"></td>
-            <td>Cosmos3</td>
-            <td class="numeric">54</td>
-            <td class="numeric">0.63</td>
-            <td class="numeric">14 / 21</td>
-          </tr>
-          <tr>
-            <td class="rank numeric"></td>
-            <td>MolmoAct-2</td>
-            <td class="numeric">45</td>
-            <td class="numeric">0.59</td>
-            <td class="numeric">14 / 21</td>
-          </tr>
-          <tr>
-            <td class="rank numeric"></td>
-            <td>Galaxea G0.5</td>
-            <td class="numeric">33</td>
-            <td class="numeric">0.46</td>
-            <td class="numeric">11 / 21</td>
-          </tr>
-          <tr>
-            <td class="rank numeric"></td>
-            <td>&pi;<sub>0.5</sub></td>
-            <td class="numeric">26</td>
-            <td class="numeric">0.43</td>
-            <td class="numeric">10 / 21</td>
-          </tr>
-          <tr>
-            <td class="rank numeric"></td>
-            <td>GR00T-N1.7</td>
-            <td class="numeric">14</td>
-            <td class="numeric">0.26</td>
-            <td class="numeric">8 / 21</td>
-          </tr>
-          <tr>
-            <td class="rank numeric"></td>
-            <td>&pi;<sub>0</sub>-FAST</td>
-            <td class="numeric">8</td>
-            <td class="numeric">0.14</td>
-            <td class="numeric">4 / 21</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Rows are drawn by static/js/index.js from static/data/leaderboard.json, which
+         tools/export_figure_data.py exports from the paper's figure data (fig 8a). -->
+    <div class="lb-card">
+      <div class="lb-toolbar">
+        <span class="lb-meta" id="lb-meta"></span>
+      </div>
+      <div class="lb" id="leaderboard-chart" role="table" aria-label="Policy leaderboard"></div>
+      <div class="lb-legend" aria-hidden="true">
+        <span><i class="key key-solid"></i>success rate</span>
+        <span><i class="key key-soft"></i>mean score</span>
+        <span><i class="key key-ci"></i>95% CI</span>
+        <span><i class="key key-ring"></i><span id="lb-ring-label">tasks solved</span></span>
+      </div>
     </div>
     <p class="table-caption">
-      Values from Fig. 8(a) of the paper: six rollouts per task across 20 environments.
-      Click any column header to sort.
+      Macro-averaged over tasks; whiskers are 95% cluster-bootstrap confidence intervals.
+      Hover a bar for exact values.
     </p>
 
+    <!-- Hidden until the eval harness is public. Uncomment to show.
     <div class="content">
       <h3 class="title is-4">Submitting to the leaderboard</h3>
       <p>
@@ -370,6 +330,7 @@
         PR or send results.
       </p>
     </div>
+    -->
   </div>
 </section>
 
@@ -381,90 +342,114 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3">Results</h2>
 
-    <h3 class="title is-4">Policy benchmark and stage-wise traces</h3>
-    <img src="./static/images/benchmark.png"
-         alt="Binary success rates and mean progress across policies, with stage-wise trajectory traces.">
-    <p class="table-caption">
-      <b>(a)</b> Binary success rates and mean progress scores across evaluated policies.
-      <b>(b,c)</b> Successful rollouts progress through the task milestones.
-      <b>(d,e)</b> Two rollouts stall at lifting but receive different progress scores; brief
-      peaks are marked separately from episode scores.
-    </p>
-    <div class="content">
-      <p>
-        Success and progress give the same policy ordering but describe different things:
-        success measures completion, progress also credits advances in rollouts that fail. Two
-        rollouts can share the same binary outcome <i>and</i> the same failed milestone and still
-        be distinguished &mdash; GR00T-N1.7 earns more partial credit than
-        &pi;<sub>0</sub>-FAST when both stall at lifting.
+    <!-- Every figure below is drawn by static/js/figures.js from static/data/*.json
+         (tools/export_figure_data.py). -->
+    <div class="fig-block">
+      <h3 class="title is-4">Stage-wise progress traces</h3>
+      <div class="paper-fig" data-figure="traces"></div>
+      <p class="fig-caption">
+        Four rollouts of &ldquo;put toy bear into black bowl&rdquo;. The ribbon shows the stage the
+        policy is working on, thin curves are the stage terms, the yellow line is the progress score,
+        and numbered frames mark key moments; &#9660; marks the first step the object leaves the table.
+        <b>(a, b)</b> Cosmos3 and &pi;<sub>0.5</sub> succeed at 12&nbsp;s and 9&nbsp;s.
+        <b>(c)</b> &pi;<sub>0</sub>-FAST reaches the bowl rim without ever lifting the bear (0.57, stuck
+        in transport). <b>(d)</b> GR00T N1.7 reaches the bear but never closes on it (0.16, stuck in
+        engage). Hover a plot to read the score over time.
       </p>
-    </div>
-
-    <br>
-
-    <h3 class="title is-4">Deployment fidelity and policy sensitivity</h3>
-    <img class="fig-column" src="./static/images/gains_receiver.png"
-         alt="Success and progress under stock vs system-identified PD gains, and under textured-mesh vs Gaussian-composite shadow rendering.">
-    <p class="table-caption">
-      <b>(a,b)</b> Success and mean progress with stock PD gains versus a shared set obtained
-      through system identification. <b>(c,d)</b> The same metrics under textured-mesh and
-      Gaussian-composite shadow rendering. <b>(e)</b> Example observations under the two
-      rendering configurations. Error bars show 95% confidence intervals.
-    </p>
-    <div class="content">
-      <p>
-        <b>Shadows.</b> The two rendering configurations favor different policies. MolmoAct-2 does
-        better with Gaussian compositing, &pi;<sub>0.5</sub> with the textured receiver, and
-        GR00T-N1.7 barely moves. <b>Controller gains.</b> System-identified gains lower mean
-        success and progress for all three tested policies, with larger declines for MolmoAct-2
-        and GR00T-N1.7. Policies differ in how sensitive they are to the same adjustment, which is
-        an argument for robustness checks alongside calibration.
-      </p>
-    </div>
-
-    <br>
-
-    <img class="fig-column" src="./static/images/async.png"
-         alt="Success and progress under blocking versus asynchronous execution at different real-time ratios.">
-    <p class="table-caption">
-      <b>Sensitivity to asynchronous execution.</b> Success and mean progress on a 7-task subset
-      under a blocking reference and asynchronous execution. &pi;<sub>0.5</sub> is evaluated at
-      real-time ratios of 1 and 3, &pi;<sub>0</sub>-FAST at 1. Error bars show 95% confidence
-      intervals.
-    </p>
-    <div class="content">
-      <p>
-        Asynchronous execution advances the simulation while the policy computes its next action,
-        so commands can land after the state that prompted them has changed. The response is not
-        uniform degradation: at a real-time ratio of 1 both policies score <i>above</i> the
-        blocking reference, and raising the ratio to 3 pulls &pi;<sub>0.5</sub> back down while
-        still leaving it above blocking.
-      </p>
-    </div>
-
-    <br>
-
-    <h3 class="title is-4">Validation of synthesized evaluators</h3>
-    <div>
-      <div>
-        <img class="fig-column" src="./static/images/evaluator_validation.png"
-             alt="Agreement of the synthesized evaluator and GVL with human progress scores.">
+      <div class="content">
+        <p>
+          Success and progress give the same policy ordering (see the leaderboard) but describe
+          different things: success measures completion, progress also credits advances in rollouts
+          that fail. Two failed rollouts can still be told apart &mdash; &pi;<sub>0</sub>-FAST drags the
+          bear to the rim of the bowl and earns 0.57, while GR00T N1.7 never grasps it and stays at 0.16.
+        </p>
       </div>
     </div>
-    <p class="table-caption">
-      <b>Agreement with human progress scores on RobotArena&#8734;.</b> <b>(a)</b> Predicted versus
-      human scores for our evaluator and GVL. <b>(b,c)</b> Pearson, Spearman, and Kendall
-      correlations and mean squared error, for our evaluator versus GVL scores averaged over the
-      trajectory or taken from its final frame.
-    </p>
-    <div class="content">
-      <p>
-        Applying the same synthesis procedure to RobotArena&#8734; tasks, the generated evaluators
-        agree with human judgments more closely than both GVL variants &mdash; higher Pearson,
-        Spearman, and Kendall correlations and lower mean squared error. The cost profile differs
-        too: GVL needs VLM inference for every trajectory, while our evaluator is frozen after
-        synthesis and runs deterministically over simulator state.
+
+    <div class="fig-block">
+      <h3 class="title is-4">Deployment fidelity and policy sensitivity</h3>
+      <div class="content">
+        <p>
+          Three deployment choices that a real-to-sim benchmark has to make &mdash; the controller
+          gains, how shadows are rendered, and whether the simulator waits for the policy &mdash; each
+          evaluated on MolmoAct-2, GR00T-N1.7 and &pi;<sub>0.5</sub> (asynchronous execution: &pi;<sub>0.5</sub>
+          and MolmoAct-2), paired per task against the benchmark setup.
+        </p>
+      </div>
+
+      <h4 class="fig-subtitle">Controller gains</h4>
+      <div class="paper-fig" data-figure="gains"></div>
+      <p class="fig-caption">
+        <b>(a)</b> Success rate and <b>(b)</b> mean progress under three PD-gain profiles: stock (Eden
+        defaults), sysid-A (identified across all policies&rsquo; rollouts) and sysid-B (identified on
+        &pi;-policy rollouts). All three are fixed tables applied to every policy. &Delta; is the paired
+        per-task difference from stock; error bars show 95% confidence intervals.
       </p>
+      <div class="content">
+        <p>
+          Neither system-identified profile improves on the stock gains for any tested policy: sysid-A
+          lowers success for all three (most for GR00T-N1.7, &minus;0.12), and sysid-B costs MolmoAct-2
+          the most (&minus;0.14) while leaving GR00T-N1.7 unchanged. Policies differ in how sensitive they
+          are to the same adjustment, which is an argument for robustness checks alongside calibration.
+        </p>
+      </div>
+
+      <h4 class="fig-subtitle">Shadow rendering</h4>
+      <div class="paper-fig" data-figure="receiver"></div>
+      <p class="fig-caption">
+        <b>(a)</b> Success rate and <b>(b)</b> mean progress with a textured-mesh versus a
+        Gaussian-composite shadow receiver, stock gains throughout. <b>(c)</b> What each receiver renders.
+        &Delta; is the paired per-task difference (Gaussian composite &minus; textured mesh); error bars
+        show 95% confidence intervals.
+      </p>
+      <div class="content">
+        <p>
+          The two rendering configurations favor different policies. MolmoAct-2 does better with
+          Gaussian compositing (+0.11 success), &pi;<sub>0.5</sub> with the textured receiver
+          (&minus;0.16), and GR00T-N1.7 barely moves.
+        </p>
+      </div>
+
+      <h4 class="fig-subtitle">Asynchronous execution</h4>
+      <div class="paper-fig" data-figure="async"></div>
+      <p class="fig-caption">
+        <b>(a)</b> Success rate and <b>(b)</b> mean progress under blocking execution (tint) and
+        asynchronous execution in real time (full colour), paired over 20 tasks. Under each group is the
+        latency the asynchronous runner injects: each policy&rsquo;s own measured round-trip. Error bars
+        show 95% confidence intervals.
+      </p>
+      <div class="content">
+        <p>
+          Asynchronous execution advances the simulation while the policy computes its next action,
+          so commands can land after the state that prompted them has changed. The effect depends on
+          the policy: &pi;<sub>0.5</sub>, with 87&nbsp;ms of latency, gains (+0.09 success, +0.10
+          progress), while MolmoAct-2, at 868&nbsp;ms, loses (&minus;0.10 and &minus;0.05). No interval
+          excludes zero, though. What is measurable is the time cost: MolmoAct-2&rsquo;s median time to
+          first grasp roughly doubles, from 6.8&nbsp;s to 14.0&nbsp;s.
+        </p>
+      </div>
+    </div>
+
+    <div class="fig-block">
+      <h3 class="title is-4">Validation of synthesized evaluators</h3>
+      <div class="paper-fig" data-figure="validation"></div>
+      <p class="fig-caption">
+        <b>Agreement with human progress scores on RobotArena&#8734;.</b> <b>(a)</b> Predicted versus
+        human score for each of the 80 videos, with a least-squares line and Pearson <i>r</i> per
+        scorer. <b>(b, c)</b> Pearson, Spearman, and Kendall correlations and mean squared error for our
+        evaluator and GVL (Gemini), using RobotArena&#8734;&rsquo;s reduction: the mean over the final 30%
+        of frames. Error bars show 95% paired-bootstrap confidence intervals.
+      </p>
+      <div class="content">
+        <p>
+          Applying the same synthesis procedure to RobotArena&#8734; tasks, the generated evaluators
+          agree with human judgments more closely than GVL &mdash; higher Pearson, Spearman, and
+          Kendall correlations (0.88, 0.86, 0.75 versus 0.81, 0.78, 0.64) and lower mean squared error
+          (0.045 versus 0.069). The cost profile differs too: GVL needs VLM inference for every
+          trajectory, while our evaluator is frozen after synthesis and runs deterministically over
+          simulator state.
+        </p>
+      </div>
     </div>
   </div>
 </section>
