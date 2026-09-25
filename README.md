@@ -12,6 +12,7 @@ index.html                 the whole page; every editable spot is marked TODO(..
 static/css/index.css       custom styles (Bulma files above it are vendored, don't edit)
 static/js/index.js         navbar, carousel, and the sortable-leaderboard logic
 static/images/             figures, logos, favicon, social_preview.png
+                           (gt/<scene>.jpg = real DROID frame shown in the scene gallery)
 static/videos/             teaser + result videos (env_<scene>.mp4 = orbit renders)
 static/viewer/             Spark (three.js) splat viewer, embedded as an iframe: ?scene=<scene>
 static/envs/<scene>/       scene.spz (Gaussian background, robot frame, SH0, ~700k splats),

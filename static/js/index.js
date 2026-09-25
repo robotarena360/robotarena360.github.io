@@ -126,7 +126,8 @@ function initScrollSpy() {
   update();
 }
 
-// Reconstructed-environment preview: one tab per scene, each showing a
+// Reconstructed-environment preview: a gallery of real DROID frames, one per
+// scene; the selected scene shows a
 // pre-rendered orbit video until the visitor asks for the interactive splat
 // viewer (loaded on demand — each scene is ~10–17 MB).
 function initEnvPreview() {
@@ -147,8 +148,8 @@ function initEnvPreview() {
       t.classList.toggle('is-active', on);
       t.setAttribute('aria-selected', on ? 'true' : 'false');
     });
-    caption.innerHTML = '<b>' + tab.textContent.trim() + '</b> &middot; task: &ldquo;' + tab.dataset.task +
-      '&rdquo; &middot; objects: ' + tab.dataset.objects;
+    caption.innerHTML = '<span class="env-caption-label">Task</span>' +
+      '<span class="env-caption-text">' + tab.dataset.task + '</span>';
 
     var src = './static/videos/env_' + scene + '.mp4';
     if (video.getAttribute('data-src') !== src) {

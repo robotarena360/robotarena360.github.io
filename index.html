@@ -195,16 +195,11 @@
       </div>
 
       <div class="env-preview">
-        <div class="env-tabs" role="tablist" aria-label="Environment">
-          <button type="button" role="tab" class="env-tab is-active" data-scene="droid2"
-                  data-task="Put toy bear into black bowl"
-                  data-objects="black bowl, stuffed tiger, white cup, dressing bottle, toy wheel">Example 1</button>
-          <button type="button" role="tab" class="env-tab" data-scene="droid37"
-                  data-task="Move the mug to the left"
-                  data-objects="yellow mug, metal filter basket">Example 2</button>
-          <button type="button" role="tab" class="env-tab" data-scene="droid7"
-                  data-task="Pick up yellow cup"
-                  data-objects="yellow cup, pink bowl">Example 3</button>
+        <div class="env-bar">
+          <p class="env-caption" id="env-caption" aria-live="polite"></p>
+          <button type="button" class="button is-small env-mode" id="env-mode">
+            <span class="icon"><i class="fas fa-cube"></i></span><span>Explore in 3D</span>
+          </button>
         </div>
 
         <div class="env-stage">
@@ -216,10 +211,26 @@
                   allow="fullscreen" hidden></iframe>
         </div>
 
-        <div class="env-bar">
-          <p class="env-caption" id="env-caption"></p>
-          <button type="button" class="button is-small env-mode" id="env-mode">
-            <span class="icon"><i class="fas fa-cube"></i></span><span>Explore in 3D</span>
+        <div class="env-tabs" role="tablist" aria-label="Environment (real DROID frame)">
+          <button type="button" role="tab" class="env-tab is-active" data-scene="droid2"
+                  data-task="Put toy bear into black bowl" aria-label="Put toy bear into black bowl">
+            <img src="./static/images/gt/droid2.jpg" alt="Real DROID camera frame: put toy bear into black bowl" loading="lazy">
+          </button>
+          <button type="button" role="tab" class="env-tab" data-scene="droid37"
+                  data-task="Move the mug to the left" aria-label="Move the mug to the left">
+            <img src="./static/images/gt/droid37.jpg" alt="Real DROID camera frame: move the mug to the left" loading="lazy">
+          </button>
+          <button type="button" role="tab" class="env-tab" data-scene="droid7"
+                  data-task="Pick up yellow cup" aria-label="Pick up yellow cup">
+            <img src="./static/images/gt/droid7.jpg" alt="Real DROID camera frame: pick up yellow cup" loading="lazy">
+          </button>
+          <button type="button" role="tab" class="env-tab" data-scene="droid45"
+                  data-task="Move the blue towel slightly to the right on the mat" aria-label="Move the blue towel slightly to the right on the mat">
+            <img src="./static/images/gt/droid45.jpg" alt="Real DROID camera frame: move the blue towel slightly to the right on the mat" loading="lazy">
+          </button>
+          <button type="button" role="tab" class="env-tab" data-scene="droid820"
+                  data-task="Put lego into a bowl" aria-label="Put lego into a bowl">
+            <img src="./static/images/gt/droid820.jpg" alt="Real DROID camera frame: put lego into a bowl" loading="lazy">
           </button>
         </div>
       </div>
