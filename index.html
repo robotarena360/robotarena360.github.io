@@ -30,6 +30,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
   <link rel="icon" type="image/svg+xml" href="./static/images/favicon.svg">
   <link rel="apple-touch-icon" href="./static/images/apple-touch-icon.png">
   <meta name="theme-color" content="#fbfaf7">
@@ -39,13 +40,20 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="./static/js/nav.js"></script>
   <script src="./static/js/figures.js"></script>
+  <script src="./static/js/leaderboard.js"></script>
 </head>
 <body>
 
-<nav class="side-nav" aria-label="Section navigation">
+<nav class="side-nav" aria-label="Section navigation" data-nav>
+  <a class="nav-brand" href="#top">RobotArena<span class="infinity">&#8734;</span> 360</a>
   <div class="nav-label">Contents</div>
-  <ul>
+  <button class="nav-toggle" type="button" data-nav-toggle aria-controls="section-links"
+          aria-expanded="false" aria-label="Open menu">
+    <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+  </button>
+  <ul id="section-links">
     <li><a href="#abstract">Abstract</a></li>
     <li><a href="#environments">Environments</a></li>
     <li><a href="#method">Method</a></li>
@@ -101,6 +109,10 @@
         <span class="icon"><i class="fab fa-github"></i></span>
         <span>Code</span><span class="soon-tag">Soon</span>
       </span>
+      <a href="./leaderboard/">
+        <span class="icon"><i class="fas fa-trophy"></i></span>
+        <span>Leaderboard</span>
+      </a>
     </div>
   </div>
 </header>
@@ -295,8 +307,8 @@
 
 <!-- =====================================================================
      LEADERBOARD
-     Columns are sortable: click a header. Numeric columns need
-     data-sort="numeric"; the rank column renumbers itself.
+     A compact ranking; the full, sortable table lives at leaderboard/.
+     Both are drawn by static/js/leaderboard.js.
      ===================================================================== -->
 <section class="section" id="leaderboard">
   <div class="container is-max-desktop">
@@ -312,34 +324,15 @@
       </p>
     </div>
 
-    <!-- Rows are drawn by static/js/index.js from static/data/leaderboard.json, which
-         tools/export_figure_data.py exports from the paper's figure data (fig 8a). -->
-    <div class="lb-card">
-      <div class="lb-toolbar">
-        <span class="lb-meta" id="lb-meta"></span>
-      </div>
-      <div class="lb" id="leaderboard-chart" role="table" aria-label="Policy leaderboard"></div>
-      <div class="lb-legend" aria-hidden="true">
-        <span><i class="key key-solid"></i>success rate</span>
-        <span><i class="key key-soft"></i>mean score</span>
-        <span><i class="key key-ci"></i>95% CI</span>
-        <span><i class="key key-ring"></i><span id="lb-ring-label">tasks solved</span></span>
-      </div>
-    </div>
-    <p class="table-caption">
-      Macro-averaged over tasks; whiskers are 95% cluster-bootstrap confidence intervals.
-      Hover a bar for exact values.
-    </p>
-
-    <!-- Hidden until the eval harness is public. Uncomment to show.
-    <div class="content">
-      <h3 class="title is-4">Submitting to the leaderboard</h3>
-      <p>
-        TODO: link the eval harness, state the expected result format, and say where to open a
-        PR or send results.
+    <div class="lb-card lb-mini" id="lb-preview" aria-label="Policy ranking by success rate"></div>
+    <div class="lb-mini-foot">
+      <p class="table-caption">
+        Success rate, macro-averaged over tasks, with 95% cluster-bootstrap confidence intervals.
       </p>
+      <a class="lb-cta" href="./leaderboard/">
+        <span>Full leaderboard</span><span class="icon"><i class="fas fa-arrow-right"></i></span>
+      </a>
     </div>
-    -->
   </div>
 </section>
 

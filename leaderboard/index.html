@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="RobotArena&#8734; 360 leaderboard: generalist robot policies evaluated on 20 DROID-reconstructed environments with simulation-native agentic scoring.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leaderboard · RobotArena&#8734; 360</title>
+
+  <meta property="og:title" content="RobotArena&#8734; 360 Leaderboard">
+  <meta property="og:description" content="Generalist robot policies ranked on 20 DROID-reconstructed environments.">
+  <meta property="og:image" content="https://robotarena360.github.io/static/images/social_preview.png">
+  <meta property="og:url" content="https://robotarena360.github.io/leaderboard/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Source+Sans+3:400,600,700"
+        rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/bulma.min.css">
+  <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="stylesheet" href="../static/css/leaderboard.css">
+  <link rel="icon" type="image/svg+xml" href="../static/images/favicon.svg">
+  <link rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
+  <meta name="theme-color" content="#fbfaf7">
+
+  <script defer src="../static/js/fontawesome.all.min.js"></script>
+  <script src="../static/js/leaderboard.js"></script>
+  <script src="../static/js/nav.js"></script>
+</head>
+<body>
+
+<header class="lb-topbar" data-nav>
+  <div class="lb-topbar-inner">
+    <a class="lb-brand" href="../">RobotArena<span class="infinity">&#8734;</span> 360</a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-links"
+            aria-expanded="false" aria-label="Open menu">
+      <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <nav id="site-links" aria-label="Site">
+      <a href="../#method">Method</a>
+      <a href="../#results">Results</a>
+      <a href="../#BibTeX">BibTeX</a>
+    </nav>
+  </div>
+</header>
+
+<section class="lb-hero">
+  <div class="lb-eyebrow">RobotArena&#8734; 360 benchmark</div>
+  <h1 class="lb-title">Leaderboard</h1>
+  <p class="lb-lede">
+    Generalist manipulation policies evaluated zero-shot on 20 tasks in DROID-reconstructed
+    digital twins, scored by agent-authored evaluators over privileged simulator state.
+  </p>
+  <div class="lb-stats" id="lb-stats"></div>
+</section>
+
+<!-- Everything below the hero is drawn by static/js/leaderboard.js from
+     static/data/leaderboard.json (scores) and static/data/policies.json (org, logo, notes). -->
+<section class="section" id="ranking">
+  <div class="container is-max-desktop">
+    <div class="lb-podium" id="lb-podium"></div>
+
+    <div class="lb-card lb-table-card">
+      <div class="lb-table" id="lb-table" role="table" aria-label="Policy leaderboard"></div>
+      <div class="lb-table-foot">
+        <div class="lb-legend" aria-hidden="true">
+          <span><i class="lb-key-bar"></i>macro-average over tasks</span>
+          <span><i class="lb-key-ci"></i>95% cluster-bootstrap CI</span>
+        </div>
+        <div class="lb-notes" id="lb-notes"></div>
+      </div>
+    </div>
+    <p class="table-caption">
+      Ranked by success rate, ties broken by mean score. Click a column heading to re-rank;
+      hover a bar for its confidence interval.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="protocol">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Evaluation protocol</h2>
+    <div class="content">
+      <p>
+        Every policy runs under the same conditions, so differences in the table come from the
+        policy rather than the setup.
+      </p>
+    </div>
+    <div class="lb-protocol">
+      <div class="lb-protocol-item">
+        <h3><span class="icon"><i class="fas fa-box-open"></i></span>Official checkpoints</h3>
+        <p>Each policy uses its official DROID-finetuned checkpoint, with no adaptation to our
+          environments.</p>
+      </div>
+      <div class="lb-protocol-item">
+        <h3><span class="icon"><i class="fas fa-sliders-h"></i></span>Shared setup</h3>
+        <p>Absolute joint-position control, and the same simulation parameters, robot
+          configuration and camera setup for every policy.</p>
+      </div>
+      <div class="lb-protocol-item">
+        <h3><span class="icon"><i class="fas fa-redo"></i></span>Six rollouts per task</h3>
+        <p>Each of the 20 tasks is attempted six times, with 1200 simulation steps per
+          rollout.</p>
+      </div>
+      <div class="lb-protocol-item">
+        <h3><span class="icon"><i class="fas fa-chart-line"></i></span>Success and progress</h3>
+        <p>Evaluators return a binary success verdict and a continuous progress score, which
+          the table reports as success rate and mean score.</p>
+      </div>
+    </div>
+
+    <!-- Hidden until the eval harness is public. Uncomment to show.
+    <h3 class="title is-4">Submitting to the leaderboard</h3>
+    <div class="content">
+      <p>
+        TODO: link the eval harness, state the expected result format, and say where to open a
+        PR or send results.
+      </p>
+    </div>
+    -->
+
+    <div class="content" style="margin-top: 2rem;">
+      <p>
+        For how the environments are reconstructed and the evaluators are synthesized, see the
+        <a href="../#method">method</a>; for per-task behaviour and deployment sensitivity, see the
+        <a href="../#results">results</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Organization logos belong to their respective owners and identify each policy's
+            developer. This website is licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+            Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

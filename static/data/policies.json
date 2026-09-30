@@ -1,0 +1,9 @@
+{
+  "cosmos3":   {"org": "NVIDIA", "logo": "nvidia.svg",
+                "note": "Receives one additional camera view to match its native inference configuration."},
+  "molmoact2": {"org": "Ai2", "logo": "ai2.png"},
+  "galaxea":   {"org": "Galaxea AI", "logo": "galaxea.png"},
+  "pi05":      {"org": "Physical Intelligence", "logo": "physical-intelligence.png"},
+  "gr00t":     {"org": "NVIDIA", "logo": "nvidia.svg"},
+  "pi0_fast":  {"org": "Physical Intelligence", "logo": "physical-intelligence.png"}
+}

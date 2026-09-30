@@ -9,9 +9,13 @@ Adapted from the [Nerfies](https://github.com/nerfies/nerfies.github.io) project
 
 ```
 index.html                 the whole page; every editable spot is marked TODO(...)
+leaderboard/index.html     the full leaderboard page (robotarena360.github.io/leaderboard/)
 static/css/index.css       custom styles (Bulma files above it are vendored, don't edit)
-static/js/index.js         navbar, carousel, and the sortable-leaderboard logic
+static/js/index.js         navbar, carousel, environment viewer
+static/js/leaderboard.js   leaderboard: preview on index.html, full table on leaderboard/
+static/js/nav.js           phone-width hamburger menu (both pages)
 static/images/             figures, logos, favicon, social_preview.png
+                           (logos/ = organization logos shown on the leaderboard)
                            (gt/<scene>.jpg = real DROID frame shown in the scene gallery)
 static/videos/             teaser + result videos (env_<scene>.mp4 = orbit renders)
 static/viewer/             Spark (three.js) splat viewer, embedded as an iframe: ?scene=<scene>
@@ -20,6 +24,7 @@ static/envs/<scene>/       scene.spz (Gaussian background, robot frame, SH0, ~70
 static/pdfs/               paper.pdf, supplementary, poster
 static/js/figures.js       draws the Results figures in the page (port of the paper's figure code)
 static/data/               JSON behind the leaderboard and every Results figure
+                           (policies.json = org name, logo, footnote per policy; edited by hand)
 static/figures/            key frames used by those figures (traces, shadow receiver)
 tools/export_figure_data.py  exports static/data/ + static/figures/ from the paper repos
 ```
