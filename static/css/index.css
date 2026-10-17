@@ -563,6 +563,9 @@ body {
   color: var(--muted);
 }
 
+.affiliation span { display: inline-block; margin: 0 0.7rem; }
+.affiliation sup { font-size: 0.7em; margin-right: 0.12em; }
+
 
 .venue-badge {
   display: inline-block;
