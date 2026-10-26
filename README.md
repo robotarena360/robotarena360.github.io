@@ -10,14 +10,27 @@ Adapted from the [Nerfies](https://github.com/nerfies/nerfies.github.io) project
 ```
 index.html                 the whole page; every editable spot is marked TODO(...)
 leaderboard/index.html     the full leaderboard page (robotarena360.github.io/leaderboard/)
-static/css/index.css       custom styles (Bulma files above it are vendored, don't edit)
-static/js/index.js         navbar, carousel, environment viewer
+static/css/site.css        shared styles for both pages (tokens, top bar, sections, figures)
+static/css/glass.css       liquid-glass material (with static/js/glass.js)
+static/css/leaderboard.css leaderboard preview (index.html) and the full page (leaderboard/)
+static/js/site.js          both pages: top bar + phone menu, hero + live 3D, scene ring,
+                           real/sim wipe, scroll reveals
+static/js/glass.js         liquid glass: SVG refraction on Chromium, frosted elsewhere; tab droplet
+static/js/replay.js        scoring replay widget (Method section), from static/data/traces.json
 static/js/leaderboard.js   leaderboard: preview on index.html, full table on leaderboard/
-static/js/nav.js           phone-width hamburger menu (both pages)
 static/images/             figures, logos, favicon, social_preview.png
                            (logos/ = organization logos shown on the leaderboard)
                            (gt/<scene>.jpg = real DROID frame shown in the scene gallery)
-static/videos/             teaser + result videos (env_<scene>.mp4 = orbit renders)
+static/videos/             teaser + result videos (env_<scene>.mp4 = hero orbit renders)
+                           (orbits/<scene>.mp4 = environment ring, 720p; posters in images/orbits/;
+                            droid35 and droid980 have no orbit render, so the ring shows their
+                            sim still)
+                           (pipeline/*.mp4 = Method pipeline clips: object turntable, pose
+                            refinement, scale search, collider, plane fit, twin settling)
+                           (rollouts/<policy>.mp4 = the four droid2 rollouts in the scoring
+                            replay; each spans its whole episode, so video time maps
+                            linearly onto traces.json steps; posters in images/rollouts/)
+static/images/pipeline/    droid2 running example for the Method pipeline diagram
 static/viewer/             Spark (three.js) splat viewer, embedded as an iframe: ?scene=<scene>
 static/envs/<scene>/       scene.spz (Gaussian background, robot frame, SH0, ~700k splats),
                            objects.glb (object meshes at settled poses), meta.json (DROID camera)

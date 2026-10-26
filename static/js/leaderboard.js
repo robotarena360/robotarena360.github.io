@@ -88,9 +88,16 @@
   }
 
   // ------------------------------------------------------------ project page
+  // Rows race in once the page adds .is-in to #lb-preview (static/js/site.js).
   function drawPreview(el, data) {
-    el.innerHTML = data.rows.map(function (r) {
-      return '<div class="lb-mini-row">' + rankBadge(r.rank) + policy(r) + meter(r, 'sr') + '</div>';
+    el.innerHTML = data.rows.map(function (r, i) {
+      var ci = r.sr_ci;
+      var tip = 'Success rate ' + pct(r.sr) + ' (95% CI ' + pct(ci[0]) + '–' + pct(ci[1]) + ')';
+      return '<div class="lb-mini-row" style="--c:' + r.color + ';--v:' + width(r.sr) + ';--d:' + (i * 90) + 'ms">' +
+        rankBadge(r.rank) + policy(r) +
+        '<span class="lb-mini-track" title="' + tip + '"><span class="lb-mini-fill"></span>' +
+        '<span class="lb-ci" style="left:' + width(ci[0]) + ';width:calc(' + width(ci[1]) + ' - ' + width(ci[0]) + ')"></span></span>' +
+        '<span class="lb-mini-val">' + (r.sr * 100).toFixed(1) + '<small>%</small></span></div>';
     }).join('');
   }
 
@@ -100,21 +107,26 @@
     var total = rows.reduce(function (s, r) { return s + r.n; }, 0);
     el.innerHTML = [[rows.length, 'policies'], [tasks, 'tasks'], [per, 'rollouts per task'],
                     [total.toLocaleString('en-US'), 'rollouts in total']].map(function (s) {
-      return '<span class="lb-stat"><b>' + s[0] + '</b>' + s[1] + '</span>';
+      return '<div class="lb-stat"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>';
     }).join('');
   }
 
+  // Top three as cards, laid out 2 · 1 · 3 by the stylesheet.
   function drawPodium(el, rows) {
     el.innerHTML = rows.slice(0, 3).map(function (r) {
+      var ci = r.sr_ci;
       return '<article class="lb-podium-card is-' + r.rank + '" style="--c:' + r.color + ';--t:' + r.tint + '">' +
-        '<div class="lb-podium-top">' + rankBadge(r.rank) + logo(r) + '</div>' +
-        '<h3 class="lb-podium-name">' + r.name + (r.mark ? '<sup class="lb-mark">' + r.mark + '</sup>' : '') + '</h3>' +
+        '<div class="lb-podium-top"><span class="lb-medal">' + r.rank + '</span>' + logo(r) + '</div>' +
+        '<h3 class="lb-podium-name">' + r.name + (r.mark ? '<sup class="lb-mark" title="' + esc(r.note) + '">' + r.mark + '</sup>' : '') + '</h3>' +
         '<p class="lb-podium-org">' + esc(r.org || '') + '</p>' +
-        '<p class="lb-podium-big">' + pct(r.sr) + '<span>success rate</span></p>' +
+        '<p class="lb-podium-big">' + (r.sr * 100).toFixed(1) + '<small>%</small><span>success rate</span></p>' +
+        '<div class="lb-podium-bar" title="95% CI ' + pct(ci[0]) + '–' + pct(ci[1]) + '">' +
+          '<span class="lb-podium-fill" style="width:' + width(r.sr) + '"></span>' +
+          '<span class="lb-ci" style="left:' + width(ci[0]) + ';width:calc(' + width(ci[1]) + ' - ' + width(ci[0]) + ')"></span></div>' +
         '<dl class="lb-podium-facts">' +
           '<div><dt>Mean score</dt><dd>' + f2(r.ms) + '</dd></div>' +
-          '<div><dt>Tasks solved</dt><dd>' + r.solved + ' / ' + r.scenes + '</dd></div>' +
-          '<div><dt>Successes</dt><dd>' + r.succ + ' / ' + r.n + '</dd></div>' +
+          '<div><dt>Successes</dt><dd>' + r.succ + '<span class="lb-of"> / ' + r.n + '</span></dd></div>' +
+          '<div class="is-ring"><dt>Tasks solved</dt><dd>' + ring(r.solved, r.scenes, r.color, r.tint) + '</dd></div>' +
         '</dl></article>';
     }).join('');
   }

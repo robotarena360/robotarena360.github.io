@@ -13,53 +13,93 @@
   <meta property="og:url" content="https://robotarena360.github.io/leaderboard/">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Source+Sans+3:400,600,700"
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans:wght@400;600&display=swap"
         rel="stylesheet">
-  <link rel="stylesheet" href="../static/css/bulma.min.css">
-  <link rel="stylesheet" href="../static/css/index.css">
-  <link rel="stylesheet" href="../static/css/leaderboard.css">
+  <link rel="stylesheet" href="../static/css/glass.css?v=20261026e">
+  <link rel="stylesheet" href="../static/css/site.css?v=20261026e">
+  <link rel="stylesheet" href="../static/css/leaderboard.css?v=20261026e">
   <link rel="icon" type="image/svg+xml" href="../static/images/favicon.svg">
   <link rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
-  <meta name="theme-color" content="#fbfaf7">
+  <meta name="theme-color" content="#0b0c0f">
 
-  <script defer src="../static/js/fontawesome.all.min.js"></script>
-  <script src="../static/js/leaderboard.js"></script>
-  <script src="../static/js/nav.js"></script>
+  <script src="../static/js/leaderboard.js?v=20261026e"></script>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 
-<header class="lb-topbar" data-nav>
-  <div class="lb-topbar-inner">
-    <a class="lb-brand" href="../">RobotArena<span class="infinity">&#8734;</span> 360</a>
-    <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-links"
-            aria-expanded="false" aria-label="Open menu">
-      <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-    </button>
-    <nav id="site-links" aria-label="Site">
+<!-- Same top bar as the project page (static/js/site.js). -->
+<div class="top" data-top>
+  <a class="brand glass is-dark" href="../" data-glass-scale="24">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="32" fill="#111317"/><circle cx="32" cy="32" r="23" fill="none" stroke="#14a397" stroke-width="3.5" stroke-dasharray="118 26.5" stroke-linecap="round" transform="rotate(-62 32 32)"/><path d="M32 32 C27.5 25.5 17 25 17 32 C17 39 27.5 38.5 32 32 C36.5 25.5 47 25 47 32 C47 39 36.5 38.5 32 32 Z" fill="none" stroke="#e8742b" stroke-width="5" stroke-linejoin="round"/></svg>
+    RobotArena&#8734; 360
+  </a>
+  <nav class="topnav glass is-dark" data-glass-scale="26" aria-label="Site">
+    <div class="lg-tabs" data-tabs>
+      <a href="#podium">Top three</a>
+      <a href="#ranking">Ranking</a>
+      <a href="#protocol">Protocol</a>
       <a href="../#method">Method</a>
       <a href="../#results">Results</a>
       <a href="../#BibTeX">BibTeX</a>
-    </nav>
+    </div>
+  </nav>
+  <button class="menu-btn glass is-dark" type="button" data-menu-btn aria-controls="menu"
+          aria-expanded="false" aria-label="Open menu" data-glass-scale="20"><span></span></button>
+  <nav class="menu glass is-dark" id="menu" data-menu data-glass-scale="0" aria-label="Site">
+    <a href="../">Project page</a>
+    <a href="#podium">Top three</a>
+    <a href="#ranking">Ranking</a>
+    <a href="#protocol">Protocol</a>
+    <a href="../#method">Method</a>
+    <a href="../#results">Results</a>
+    <a href="../#BibTeX">BibTeX</a>
+  </nav>
+</div>
+
+<!-- Everything inside #lb-stats, #lb-podium, #lb-table and #lb-notes is drawn by
+     static/js/leaderboard.js from static/data/leaderboard.json (scores) and
+     static/data/policies.json (org, logo, notes). -->
+<header class="hero is-short" id="top" data-hero data-base="../" data-scene="droid37"
+        data-cycle="droid37,droid2,droid7,droid820,droid45">
+  <video class="v is-on" autoplay muted loop playsinline preload="auto" aria-hidden="true"
+         poster="../static/images/env_droid37.jpg" src="../static/videos/env_droid37.mp4"></video>
+  <video class="v" muted loop playsinline preload="none" aria-hidden="true"></video>
+
+  <div class="slab glass is-pre" data-glass-scale="52" data-glass-bezel="40">
+    <span class="kicker">RobotArena&#8734; 360 benchmark</span>
+    <h1 class="title" data-split>Leaderboard</h1>
+    <p class="tagline">
+      Generalist manipulation policies evaluated zero-shot on 20 tasks in DROID-reconstructed
+      digital twins, scored by agent-authored evaluators over privileged simulator state.
+    </p>
+    <div class="lb-stats" id="lb-stats"></div>
   </div>
+
+  <a class="hero-cue glass is-dark is-press" href="#podium" data-glass-scale="26">
+    See the ranking<i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></i>
+  </a>
 </header>
 
-<section class="lb-hero">
-  <div class="lb-eyebrow">RobotArena&#8734; 360 benchmark</div>
-  <h1 class="lb-title">Leaderboard</h1>
-  <p class="lb-lede">
-    Generalist manipulation policies evaluated zero-shot on 20 tasks in DROID-reconstructed
-    digital twins, scored by agent-authored evaluators over privileged simulator state.
-  </p>
-  <div class="lb-stats" id="lb-stats"></div>
+<main class="day">
+
+<section class="sec" id="podium">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="kicker">Top three</span>
+      <h2 class="h2">The current leaders.<br><span class="dim">Success rate across 20 tasks.</span></h2>
+    </div>
+    <div class="lb-podium" id="lb-podium" aria-label="Top three policies"></div>
+  </div>
 </section>
 
-<!-- Everything below the hero is drawn by static/js/leaderboard.js from
-     static/data/leaderboard.json (scores) and static/data/policies.json (org, logo, notes). -->
-<section class="section" id="ranking">
-  <div class="container is-max-desktop">
-    <div class="lb-podium" id="lb-podium"></div>
+<section class="sec" id="ranking">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="kicker">Full ranking</span>
+      <h2 class="h2">Every policy, every metric.<br><span class="dim">Click a heading to sort.</span></h2>
+    </div>
 
-    <div class="lb-card lb-table-card">
+    <div class="lb-table-card">
       <div class="lb-table" id="lb-table" role="table" aria-label="Policy leaderboard"></div>
       <div class="lb-table-foot">
         <div class="lb-legend" aria-hidden="true">
@@ -69,48 +109,55 @@
         <div class="lb-notes" id="lb-notes"></div>
       </div>
     </div>
-    <p class="table-caption">
+    <p class="lb-caption">
       Ranked by success rate, ties broken by mean score. Click a column heading to re-rank;
       hover a bar for its confidence interval.
     </p>
   </div>
 </section>
 
-<section class="section" id="protocol">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Evaluation protocol</h2>
-    <div class="content">
-      <p>
-        Every policy runs under the same conditions, so differences in the table come from the
-        policy rather than the setup.
-      </p>
+<section class="sec" id="protocol">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="kicker">Evaluation protocol</span>
+      <h2 class="h2">Same conditions for everyone.</h2>
+      <div class="prose">
+        <p>
+          Every policy runs under the same conditions, so differences in the table come from the
+          policy rather than the setup.
+        </p>
+      </div>
     </div>
-    <div class="lb-protocol">
-      <div class="lb-protocol-item">
-        <h3><span class="icon"><i class="fas fa-box-open"></i></span>Official checkpoints</h3>
+    <div class="lb-protocol" data-reveal>
+      <div class="lb-protocol-item" data-stagger>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+        <h3>Official checkpoints</h3>
         <p>Each policy uses its official DROID-finetuned checkpoint, with no adaptation to our
           environments.</p>
       </div>
-      <div class="lb-protocol-item">
-        <h3><span class="icon"><i class="fas fa-sliders-h"></i></span>Shared setup</h3>
+      <div class="lb-protocol-item" data-stagger>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+        <h3>Shared setup</h3>
         <p>Absolute joint-position control, and the same simulation parameters, robot
           configuration and camera setup for every policy.</p>
       </div>
-      <div class="lb-protocol-item">
-        <h3><span class="icon"><i class="fas fa-redo"></i></span>Six rollouts per task</h3>
+      <div class="lb-protocol-item" data-stagger>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v5h-5"/></svg>
+        <h3>Six rollouts per task</h3>
         <p>Each of the 20 tasks is attempted six times, with 1200 simulation steps per
           rollout.</p>
       </div>
-      <div class="lb-protocol-item">
-        <h3><span class="icon"><i class="fas fa-chart-line"></i></span>Success and progress</h3>
+      <div class="lb-protocol-item" data-stagger>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 20h18M5 16l4-5 4 3 6-8"/></svg>
+        <h3>Success and progress</h3>
         <p>Evaluators return a binary success verdict and a continuous progress score, which
           the table reports as success rate and mean score.</p>
       </div>
     </div>
 
     <!-- Hidden until the eval harness is public. Uncomment to show.
-    <h3 class="title is-4">Submitting to the leaderboard</h3>
-    <div class="content">
+    <div class="prose">
+      <h3>Submitting to the leaderboard</h3>
       <p>
         TODO: link the eval harness, state the expected result format, and say where to open a
         PR or send results.
@@ -118,7 +165,7 @@
     </div>
     -->
 
-    <div class="content" style="margin-top: 2rem;">
+    <div class="prose" style="margin-top:36px">
       <p>
         For how the environments are reconstructed and the evaluators are synthesized, see the
         <a href="../#method">method</a>; for per-task behaviour and deployment sensitivity, see the
@@ -128,22 +175,21 @@
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            Organization logos belong to their respective owners and identify each policy's
-            developer. This website is licensed under a <a rel="license"
-              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
-            Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-        </div>
-      </div>
-    </div>
+<footer class="foot">
+  <div class="wrap">
+    <p>
+      Organization logos belong to their respective owners and identify each policy's
+      developer. This website is licensed under a <a rel="license"
+        href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+      Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+    <p><a href="../">RobotArena&#8734; 360 project page</a></p>
   </div>
 </footer>
 
+</main>
+
+<script src="../static/js/glass.js?v=20261026e"></script>
+<script src="../static/js/site.js?v=20261026e"></script>
 </body>
 </html>

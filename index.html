@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="description"
@@ -21,123 +21,163 @@
 
   <!-- TODO(analytics): paste your Google Analytics snippet here, or delete this comment. -->
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro|Source+Sans+3:400,600"
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap"
         rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="stylesheet" href="./static/css/leaderboard.css">
+  <link rel="stylesheet" href="./static/css/glass.css?v=20261026e">
+  <link rel="stylesheet" href="./static/css/site.css?v=20261026e">
+  <link rel="stylesheet" href="./static/css/leaderboard.css?v=20261026e">
   <link rel="icon" type="image/svg+xml" href="./static/images/favicon.svg">
   <link rel="apple-touch-icon" href="./static/images/apple-touch-icon.png">
-  <meta name="theme-color" content="#fbfaf7">
+  <meta name="theme-color" content="#0b0c0f">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-  <script src="./static/js/nav.js"></script>
-  <script src="./static/js/figures.js"></script>
-  <script src="./static/js/leaderboard.js"></script>
+  <script src="./static/js/figures.js?v=20261026e"></script>
+  <script src="./static/js/leaderboard.js?v=20261026e"></script>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 
-<nav class="side-nav" aria-label="Section navigation" data-nav>
-  <a class="nav-brand" href="#top">RobotArena<span class="infinity">&#8734;</span> 360</a>
-  <div class="nav-label">Contents</div>
-  <button class="nav-toggle" type="button" data-nav-toggle aria-controls="section-links"
-          aria-expanded="false" aria-label="Open menu">
-    <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-  </button>
-  <ul id="section-links">
-    <li><a href="#abstract">Abstract</a></li>
-    <li><a href="#environments">Environments</a></li>
-    <li><a href="#method">Method</a></li>
-    <li><a href="#leaderboard">Leaderboard</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#BibTeX">BibTeX</a></li>
-  </ul>
-</nav>
-
-<div class="page-body">
-
-
-<header class="hero-header" id="top">
-  <div class="hero-inner">
-    <h1 class="paper-title">RobotArena<span class="infinity">&#8734;</span> 360</h1>
-    <p class="paper-tagline">
-      Open-World Robot Evaluation with Simulation-Native Agentic Scoring
-    </p>
-
-    <hr class="byline-rule">
-
-    <!-- For equal contribution add <sup>*</sup> after the name and uncomment the
-         note below. -->
-    <ul class="author-list">
-      <li><a href="https://pcseanlo.github.io/">Pang-Chi Lo</a><sup>1</sup></li>
-      <li><a href="https://kashu7100.github.io/">Kashu Yamazaki</a><sup>1</sup></li>
-      <li><a href="https://offjangir.github.io/">Yash Jangir</a><sup>2</sup></li>
-      <li><a href="https://byang.org/">Brian Yang</a><sup>1</sup></li>
-      <li><a href="https://zhangyidi.tech/">Yidi Zhang</a><sup>1</sup></li>
-      <li><a href="https://www.cs.cmu.edu/~katef/">Katerina Fragkiadaki</a><sup>1</sup></li>
-    </ul>
-
-    <p class="affiliation">
-      <span><sup>1</sup>Carnegie Mellon University</span>
-      <span><sup>2</sup>Johns Hopkins University</span>
-    </p>
-    <!-- <p class="affiliation" style="text-transform:none;letter-spacing:0;font-weight:400;">
-         <sup>*</sup>Equal contribution</p> -->
-
-    <!-- TODO(venue): uncomment once accepted.
-    <div class="venue-badge">ICRA 2027</div>
-    -->
-
-    <!-- TODO(links): when a resource goes live, swap its <span class="is-soon"
-         aria-disabled="true"> for <a href="URL"> and delete the "Soon" tag. -->
-    <div class="paper-links">
-      <span class="is-soon" aria-disabled="true">
-        <span class="icon"><i class="fas fa-file-pdf"></i></span>
-        <span>Paper</span><span class="soon-tag">Soon</span>
-      </span>
-      <span class="is-soon" aria-disabled="true">
-        <span class="icon"><i class="ai ai-arxiv"></i></span>
-        <span>arXiv</span><span class="soon-tag">Soon</span>
-      </span>
-      <span class="is-soon" aria-disabled="true">
-        <span class="icon"><i class="fab fa-github"></i></span>
-        <span>Code</span><span class="soon-tag">Soon</span>
-      </span>
-      <a href="./leaderboard/">
-        <span class="icon"><i class="fas fa-trophy"></i></span>
-        <span>Leaderboard</span>
-      </a>
+<!-- =====================================================================
+     TOP BAR: brand, section tabs (liquid droplet), phone menu
+     ===================================================================== -->
+<div class="top" data-top>
+  <a class="brand glass is-dark" href="#top" data-glass-scale="24">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="32" fill="#111317"/><circle cx="32" cy="32" r="23" fill="none" stroke="#14a397" stroke-width="3.5" stroke-dasharray="118 26.5" stroke-linecap="round" transform="rotate(-62 32 32)"/><path d="M32 32 C27.5 25.5 17 25 17 32 C17 39 27.5 38.5 32 32 C36.5 25.5 47 25 47 32 C47 39 36.5 38.5 32 32 Z" fill="none" stroke="#e8742b" stroke-width="5" stroke-linejoin="round"/></svg>
+    RobotArena&#8734; 360
+  </a>
+  <nav class="topnav glass is-dark" data-glass-scale="26" aria-label="Sections">
+    <div class="lg-tabs" data-tabs>
+      <a href="#abstract">Abstract</a>
+      <a href="#environments">Environments</a>
+      <a href="#method">Method</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#results">Results</a>
+      <a href="#BibTeX">BibTeX</a>
     </div>
-  </div>
-</header>
+  </nav>
+  <button class="menu-btn glass is-dark" type="button" data-menu-btn aria-controls="menu"
+          aria-expanded="false" aria-label="Open menu" data-glass-scale="20"><span></span></button>
+  <nav class="menu glass is-dark" id="menu" data-menu data-glass-scale="0" aria-label="Sections">
+    <a href="#abstract">Abstract</a>
+    <a href="#environments">Environments</a>
+    <a href="#method">Method</a>
+    <a href="#leaderboard">Leaderboard</a>
+    <a href="#results">Results</a>
+    <a href="#BibTeX">BibTeX</a>
+  </nav>
+</div>
 
 
 <!-- =====================================================================
-     TEASER
+     HERO: the reconstructed scene, a glass title slab, live 3D on demand
      ===================================================================== -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline controls preload="auto"
-             poster="./static/images/teaser_poster.jpg"
-             aria-label="RobotArena 360 overview: a real DROID episode is rebuilt as a physical twin, each instruction is decomposed into scored stages, and policies are evaluated rollout by rollout.">
-        <source src="./static/videos/teaser.mp4?v=3" type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
+<header class="hero" id="top" data-hero>
+  <video class="v is-on" autoplay muted loop playsinline preload="auto"
+         poster="./static/images/env_droid2.jpg" src="./static/videos/env_droid2.mp4"
+         aria-label="Orbit around the reconstructed environment"></video>
+  <video class="v" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <iframe title="Interactive 3D environment viewer" allow="fullscreen" hidden></iframe>
+
+  <div class="slab glass is-pre" data-glass-scale="52" data-glass-bezel="40">
+    <span class="kicker">Real-to-sim robot evaluation</span>
+    <h1 class="title" data-split>RobotArena<span class="inf">&#8734;</span> 360</h1>
+    <p class="tagline">Open-World Robot Evaluation with Simulation-Native Agentic Scoring</p>
+    <div>
+      <!-- For equal contribution add <sup>*</sup> after the name. -->
+      <ul class="authors">
+        <li><a href="https://pcseanlo.github.io/">Pang-Chi Lo<sup>1</sup></a></li>
+        <li><a href="https://kashu7100.github.io/">Kashu Yamazaki<sup>1</sup></a></li>
+        <li><a href="https://offjangir.github.io/">Yash Jangir<sup>2</sup></a></li>
+        <li><a href="https://byang.org/">Brian Yang<sup>1</sup></a></li>
+        <li><a href="https://zhangyidi.tech/">Yidi Zhang<sup>1</sup></a></li>
+        <li><a href="https://www.cs.cmu.edu/~katef/">Katerina Fragkiadaki<sup>1</sup></a></li>
+      </ul>
+      <p class="affil"><span><sup>1</sup>Carnegie Mellon University</span><span><sup>2</sup>Johns Hopkins University</span></p>
+    </div>
+    <!-- TODO(links): when a resource goes live, swap its <span class="btn ... is-soon">
+         for <a class="btn glass is-dark is-press" href="URL"> and delete the "Soon" tag.
+         TODO(venue): add a venue chip here once accepted. -->
+    <div class="links">
+      <span class="btn glass is-dark is-soon" aria-disabled="true" data-glass-scale="16">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>Paper<span class="soon">Soon</span>
+      </span>
+      <span class="btn glass is-dark is-soon" aria-disabled="true" data-glass-scale="16">
+        <i class="ai ai-arxiv" aria-hidden="true"></i>arXiv<span class="soon">Soon</span>
+      </span>
+      <span class="btn glass is-dark is-soon" aria-disabled="true" data-glass-scale="16">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c2-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>Code<span class="soon">Soon</span>
+      </span>
+      <a class="btn is-solid glass is-press" data-glass-flat href="./leaderboard/">
+        Leaderboard<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="enter">
+    <button type="button" class="glass is-press" data-enter data-glass-scale="60" data-glass-bezel="50"
+            aria-label="Step inside the interactive 3D environment">
+      <i class="pulse" aria-hidden="true"></i><i class="pulse" aria-hidden="true"></i>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></svg>
+    </button>
+    <p>Step inside the twin<small>live 3D &middot; drag to look around</small></p>
+  </div>
+
+  <div class="livebar glass is-dark" data-glass-scale="24">
+    <i aria-hidden="true"></i><span>Live reconstruction &middot; drag to orbit, scroll to zoom</span>
+    <button class="btn is-press" type="button" data-exit>Exit</button>
+  </div>
+
+  <nav class="picker glass is-dark" data-glass-scale="24" aria-label="Choose an environment">
+    <span class="picker-label">Scene &middot; <b data-picker-task>Put toy bear into black bowl</b></span>
+    <div class="lg-tabs" data-pick>
+      <a href="#" data-scene="droid2" data-task="Put toy bear into black bowl" aria-label="Put toy bear into black bowl"><img src="./static/images/gt/droid2.jpg" alt=""></a>
+      <a href="#" data-scene="droid37" data-task="Move the mug to the left" aria-label="Move the mug to the left"><img src="./static/images/gt/droid37.jpg" alt=""></a>
+      <a href="#" data-scene="droid7" data-task="Pick up yellow cup" aria-label="Pick up yellow cup"><img src="./static/images/gt/droid7.jpg" alt=""></a>
+      <a href="#" data-scene="droid45" data-task="Move the blue towel slightly to the right on the mat" aria-label="Move the blue towel slightly to the right on the mat"><img src="./static/images/gt/droid45.jpg" alt=""></a>
+      <a href="#" data-scene="droid820" data-task="Put lego into a bowl" aria-label="Put lego into a bowl"><img src="./static/images/gt/droid820.jpg" alt=""></a>
+    </div>
+  </nav>
+</header>
+
+
+<main class="day">
+
+<!-- =====================================================================
+     OVERVIEW: teaser film + key numbers
+     ===================================================================== -->
+<section class="sec" id="overview">
+  <div class="wrap film-head" data-reveal>
+    <div>
+      <span class="kicker">Overview</span>
+      <h2 class="h2">From a single photo<br><span class="dim">to a scored rollout.</span></h2>
+    </div>
+    <div class="prose">
+      <p>
         From single reference images of real-world robot recordings, our pipeline constructs
         diverse, interactable 3D simulation environments for policy evaluation. For each task,
         a coding agent decomposes the instruction into stages and authors deterministic scoring
         functions that report both terminal success and continuous progress.
-      </h2>
+      </p>
+    </div>
+  </div>
+  <div class="film" data-film data-reveal>
+    <video muted loop playsinline preload="none" data-visible-play poster="./static/images/teaser_poster.jpg"
+           aria-label="RobotArena 360 overview: a real DROID episode is rebuilt as a physical twin, each instruction is decomposed into scored stages, and policies are evaluated rollout by rollout.">
+      <source src="./static/videos/teaser.mp4?v=3" type="video/mp4">
+    </video>
+    <div class="film-ctl">
+      <button class="btn glass is-dark is-press" type="button" data-film-play data-glass-scale="18"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg><span>Play</span></button>
+      <button class="btn glass is-dark is-press" type="button" data-film-restart data-glass-scale="18"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5"/></svg><span>From the start</span></button>
+      <button class="btn glass is-dark is-press" type="button" data-film-full data-glass-scale="18" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    </div>
+  </div>
+  <div class="wrap" data-reveal>
+    <div class="nums">
+      <div data-stagger><strong data-count="20">20</strong><span>DROID environments, each rebuilt from a single image</span></div>
+      <div data-stagger><strong data-count="6">6</strong><span>state-of-the-art generalist policies benchmarked</span></div>
+      <div data-stagger><strong><em>0</em></strong><span>model calls at evaluation time: evaluators are code</span></div>
+      <div data-stagger><strong data-count="0.88" data-dec="2">0.88</strong><span>Pearson <i>r</i> with human progress scores (GVL: 0.81)</span></div>
     </div>
   </div>
 </section>
@@ -146,38 +186,36 @@
 <!-- =====================================================================
      ABSTRACT
      ===================================================================== -->
-<section class="section" id="abstract">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content">
-          <p>
-            Evaluating robot policies at scale remains a fundamental bottleneck: real-world
-            testing is costly and difficult to reproduce, while simulation benchmarks require
-            substantial environment engineering and manually designed task evaluators. We
-            introduce <b>RobotArena&#8734; 360</b>, a framework for scalable, simulation-native
-            evaluation of robot policies. Given a single image of a real manipulation
-            environment, RobotArena&#8734; 360 constructs a fully 3D interactive digital twin by
-            combining generative 3D reconstruction with metric alignment and collision-aware
-            geometry, supporting arbitrary camera viewpoints including wrist cameras and exposing
-            privileged physical state for evaluation. We further introduce <b>agentic scoring</b>:
-            rather than using foundation models to directly judge rollout videos, a coding agent
-            translates natural-language tasks into deterministic programs over simulator state.
-            These programs decompose tasks into interpretable physical milestones and measure both
-            binary success and continuous progress without model inference at evaluation time. We
-            instantiate 20 environments from DROID and benchmark six state-of-the-art policies
-            spanning diverse architectures. Our experiments reveal substantial differences between
-            policies that are obscured by binary success alone, identify important sources of
-            simulation-evaluation mismatch, including shadows, controller dynamics, and inference
-            latency, and show that agent-generated evaluators agree more closely with human
-            judgments than VLM-based scoring. Together, RobotArena&#8734; 360 turns existing robot
-            datasets into programmable evaluation platforms even under limited camera views or
-            lack of complete environment or object scans, while substantially reducing human
-            effort and cost.
-          </p>
-        </div>
-      </div>
+<section class="sec" id="abstract">
+  <div class="wrap abstract" data-reveal>
+    <div>
+      <span class="kicker">Abstract</span>
+    </div>
+    <div class="prose">
+      <p>
+        Evaluating robot policies at scale remains a fundamental bottleneck: real-world
+        testing is costly and difficult to reproduce, while simulation benchmarks require
+        substantial environment engineering and manually designed task evaluators. We
+        introduce <b>RobotArena&#8734; 360</b>, a framework for scalable, simulation-native
+        evaluation of robot policies. Given a single image of a real manipulation
+        environment, RobotArena&#8734; 360 constructs a fully 3D interactive digital twin by
+        combining generative 3D reconstruction with metric alignment and collision-aware
+        geometry, supporting arbitrary camera viewpoints including wrist cameras and exposing
+        privileged physical state for evaluation. We further introduce <b>agentic scoring</b>:
+        rather than using foundation models to directly judge rollout videos, a coding agent
+        translates natural-language tasks into deterministic programs over simulator state.
+        These programs decompose tasks into interpretable physical milestones and measure both
+        binary success and continuous progress without model inference at evaluation time. We
+        instantiate 20 environments from DROID and benchmark six state-of-the-art policies
+        spanning diverse architectures. Our experiments reveal substantial differences between
+        policies that are obscured by binary success alone, identify important sources of
+        simulation-evaluation mismatch, including shadows, controller dynamics, and inference
+        latency, and show that agent-generated evaluators agree more closely with human
+        judgments than VLM-based scoring. Together, RobotArena&#8734; 360 turns existing robot
+        datasets into programmable evaluation platforms even under limited camera views or
+        lack of complete environment or object scans, while substantially reducing human
+        effort and cost.
+      </p>
     </div>
   </div>
 </section>
@@ -186,11 +224,12 @@
 <!-- =====================================================================
      RECONSTRUCTED ENVIRONMENTS
      ===================================================================== -->
-<section class="hero is-light is-small" id="environments">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Reconstructed Environments</h2>
-      <div class="content">
+<section class="sec" id="environments">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="kicker">Reconstructed environments</span>
+      <h2 class="h2">Twenty real scenes,<br><span class="dim">each from a single photo.</span></h2>
+      <div class="prose">
         <p>
           Each environment starts from a <b>single reference image</b> of a real manipulation
           scene. We decompose the image into task-relevant objects and a static background,
@@ -209,46 +248,55 @@
           a Robotiq 2F-85 gripper.
         </p>
       </div>
+    </div>
 
-      <div class="env-preview">
-        <div class="env-bar">
-          <p class="env-caption" id="env-caption" aria-live="polite"></p>
-          <button type="button" class="button is-small env-mode" id="env-mode">
-            <span class="icon"><i class="fas fa-cube"></i></span><span>Explore in 3D</span>
-          </button>
-        </div>
+  </div>
 
-        <div class="env-stage">
-          <video class="env-viewer" id="env-video" autoplay muted loop playsinline
-                 poster="./static/images/env_droid2.jpg">
-            <source src="./static/videos/env_droid2.mp4" type="video/mp4">
-          </video>
-          <iframe class="env-viewer" id="env-3d" title="Interactive 3D environment viewer"
-                  allow="fullscreen" hidden></iframe>
-        </div>
+  <div class="ring-wrap" data-ring data-reveal tabindex="0"
+       aria-label="All 20 reconstructed environments. Drag, click a scene, or use the arrow keys to spin.">
+    <div class="ring-floor" aria-hidden="true"></div>
+    <div class="ring">
+        <div class="card" data-task="Put toy bear into black bowl"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid2.jpg" src="./static/videos/orbits/droid2.mp4"></video></div>
+        <div class="card" data-task="Put yellow duck in pot"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid291.jpg" src="./static/videos/orbits/droid291.mp4"></video></div>
+        <div class="card" data-task="Stack cup on bowl"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid69.jpg" src="./static/videos/orbits/droid69.mp4"></video></div>
+        <div class="card" data-task="Move the mug to the left"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid37.jpg" src="./static/videos/orbits/droid37.mp4"></video></div>
+        <div class="card" data-task="Put lego into a bowl"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid820.jpg" src="./static/videos/orbits/droid820.mp4"></video></div>
+        <div class="card" data-task="Move the green brick into the bowl"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid1034.jpg" src="./static/videos/orbits/droid1034.mp4"></video></div>
+        <div class="card" data-task="Pick up yellow cup"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid7.jpg" src="./static/videos/orbits/droid7.mp4"></video></div>
+        <div class="card" data-task="Stack 2 bowls on top of one another"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid302.jpg" src="./static/videos/orbits/droid302.mp4"></video></div>
+        <div class="card" data-task="Stack two cups on each other"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid108.jpg" src="./static/videos/orbits/droid108.mp4"></video></div>
+        <div class="card" data-task="Move the blue towel slightly to the right on the mat"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid45.jpg" src="./static/videos/orbits/droid45.mp4"></video></div>
+        <div class="card is-still" data-task="Stack 3 cups together" data-note="sim render &middot; no orbit video"><img src="./static/images/orbits/droid980.jpg" alt="" loading="lazy"></div>
+        <div class="card" data-task="Move cup to the right of the table"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid4.jpg" src="./static/videos/orbits/droid4.mp4"></video></div>
+        <div class="card" data-task="Pour circular tokens into a bowl"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid1142.jpg" src="./static/videos/orbits/droid1142.mp4"></video></div>
+        <div class="card" data-task="Pick up the small bottle and put it on the left side of the table"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid17.jpg" src="./static/videos/orbits/droid17.mp4"></video></div>
+        <div class="card" data-task="Place the cup close to the sheet"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid34.jpg" src="./static/videos/orbits/droid34.mp4"></video></div>
+        <div class="card" data-task="Take the object and scrub the inside of the jug"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid28.jpg" src="./static/videos/orbits/droid28.mp4"></video></div>
+        <div class="card" data-task="Move the grey tape to the right"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid41.jpg" src="./static/videos/orbits/droid41.mp4"></video></div>
+        <div class="card is-still" data-task="Place the pen inside the yellow mug" data-note="sim render &middot; no orbit video"><img src="./static/images/orbits/droid35.jpg" alt="" loading="lazy"></div>
+        <div class="card" data-task="Use cup to pour something granular"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid950.jpg" src="./static/videos/orbits/droid950.mp4"></video></div>
+        <div class="card" data-task="Pick up the tape"><video muted loop playsinline preload="none" poster="./static/images/orbits/droid8.jpg" src="./static/videos/orbits/droid8.mp4"></video></div>
+    </div>
+  </div>
+  <div class="ring-bar wrap">
+    <span class="ring-cap glass is-light" data-glass-scale="20" aria-live="polite"><small>Scene <span data-ring-num>1 / 20</span></small><span data-ring-cap></span><em data-ring-note></em></span>
+    <span class="ring-hint" aria-hidden="true"><i></i>drag, or click a scene &middot; all 20 environments</span>
+  </div>
 
-        <div class="env-tabs" role="tablist" aria-label="Environment (real DROID frame)">
-          <button type="button" role="tab" class="env-tab is-active" data-scene="droid2"
-                  data-task="Put toy bear into black bowl" aria-label="Put toy bear into black bowl">
-            <img src="./static/images/gt/droid2.jpg" alt="Real DROID camera frame: put toy bear into black bowl" loading="lazy">
-          </button>
-          <button type="button" role="tab" class="env-tab" data-scene="droid37"
-                  data-task="Move the mug to the left" aria-label="Move the mug to the left">
-            <img src="./static/images/gt/droid37.jpg" alt="Real DROID camera frame: move the mug to the left" loading="lazy">
-          </button>
-          <button type="button" role="tab" class="env-tab" data-scene="droid7"
-                  data-task="Pick up yellow cup" aria-label="Pick up yellow cup">
-            <img src="./static/images/gt/droid7.jpg" alt="Real DROID camera frame: pick up yellow cup" loading="lazy">
-          </button>
-          <button type="button" role="tab" class="env-tab" data-scene="droid45"
-                  data-task="Move the blue towel slightly to the right on the mat" aria-label="Move the blue towel slightly to the right on the mat">
-            <img src="./static/images/gt/droid45.jpg" alt="Real DROID camera frame: move the blue towel slightly to the right on the mat" loading="lazy">
-          </button>
-          <button type="button" role="tab" class="env-tab" data-scene="droid820"
-                  data-task="Put lego into a bowl" aria-label="Put lego into a bowl">
-            <img src="./static/images/gt/droid820.jpg" alt="Real DROID camera frame: put lego into a bowl" loading="lazy">
-          </button>
-        </div>
+  <div class="wrap">
+    <div class="compare" data-reveal>
+      <div class="wipe" data-wipe tabindex="0" role="slider" aria-label="Compare the real frame with its simulation"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <img src="./static/images/gt/droid2.jpg" alt="Real DROID camera frame: put toy bear into black bowl">
+        <img class="sim" src="./static/images/env_droid2.jpg" alt="The same scene reconstructed in simulation">
+        <span class="bar" aria-hidden="true"></span>
+        <span class="knob glass is-dark" data-glass-scale="36" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></span>
+        <span class="tag l">Real</span><span class="tag r">Simulation</span>
+      </div>
+      <div>
+        <h3>Move across the photo.<br>It turns into its simulation.</h3>
+        <p>The real DROID frame on the left, the reconstructed digital twin on the right: object
+          assets, a Gaussian background with collision geometry, aligned to the robot camera.</p>
       </div>
     </div>
   </div>
@@ -258,16 +306,17 @@
 <!-- =====================================================================
      METHOD
      ===================================================================== -->
-<section class="section" id="method">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Method</h2>
+<section class="sec" id="method">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="kicker">Method</span>
+      <h2 class="h2">Rebuild the world.<br><span class="dim">Then let an agent write the judge.</span></h2>
+    </div>
 
-        <div class="method-part">
-          <h3 class="title is-4">Real-to-sim transfer with an interactable background</h3>
-          <img src="./static/images/reconstruction.png" alt="Real-to-sim pipeline: input image, semantic decomposition, 3D object assets, background Gaussians and collision mesh, scene optimization, and the interactable digital twin.">
-          <div class="content">
+    <div class="part">
+      <div class="part-head" data-reveal>
+        <h3><small>01</small>Real-to-sim transfer with an interactable background</h3>
+        <div class="prose">
           <p>
             Building on RobotArena&#8734;'s foreground-object pipeline, we pair task assets with a
             full-scene 3D Gaussian background. Recovering collision meshes and fitting stable
@@ -278,13 +327,74 @@
             workspaces, and datasets that lack dedicated scans still become evaluation
             environments.
           </p>
+        </div>
+      </div>
+      <div class="pipe" data-pipeline data-reveal>
+        <ol class="pipe-rail" role="tablist" aria-label="Real-to-sim pipeline, droid2">
+          <li><button type="button" role="tab" data-step="0" data-dur="6000"><span class="pipe-n">1</span><span class="pipe-t"><b>Input reference image</b><small>One real DROID frame</small></span><i class="pipe-prog"></i></button></li>
+          <li><button type="button" role="tab" data-step="1" data-dur="8000"><span class="pipe-n">2</span><span class="pipe-t"><b>Semantic scene decomposition</b><small>Objects + clean background</small></span><i class="pipe-prog"></i></button></li>
+          <li><button type="button" role="tab" data-step="2" data-dur="7000"><span class="pipe-n">3</span><span class="pipe-t"><b>3D object assets</b><small>Crop &rarr; mesh, per object</small></span><i class="pipe-prog"></i></button></li>
+          <li><button type="button" role="tab" data-step="3" data-dur="6000"><span class="pipe-n">4</span><span class="pipe-t"><b>Background entities</b><small>Gaussians + collision mesh</small></span><i class="pipe-prog"></i></button></li>
+          <li><button type="button" role="tab" data-step="4" data-dur="17000"><span class="pipe-n">5</span><span class="pipe-t"><b>Scene optimization</b><small>Pose, scale, support planes</small></span><i class="pipe-prog"></i></button></li>
+          <li><button type="button" role="tab" data-step="5" data-dur="11500"><span class="pipe-n">6</span><span class="pipe-t"><b>Interactable digital twin</b><small>In simulation, any viewpoint</small></span><i class="pipe-prog"></i></button></li>
+        </ol>
+        <div class="pipe-stage">
+          <div class="pipe-view" data-view="0" role="tabpanel">
+            <div class="pv-media pv-kb"><img src="./static/images/pipeline/input.jpg" loading="lazy" alt="Real DROID camera frame of a table with a bowl, a toy tiger, a cup, a bottle and a toy wheel">
+              <span class="pv-tag">DROID &middot; exterior camera &middot; 1 frame</span></div>
+            <p class="pv-cap">The only input: a single frame of an existing DROID recording. No scene scan, no multi-view capture.</p>
+          </div>
+          <div class="pipe-view" data-view="1" role="tabpanel">
+            <div class="pv-media wipe is-auto" data-wipe tabindex="0" role="slider" aria-label="Compare the labelled objects with the clean background" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <img src="./static/images/pipeline/masks.jpg" loading="lazy" alt="Labelled masks of the five task-relevant objects">
+              <img class="sim" src="./static/images/pipeline/plate.jpg" loading="lazy" alt="The same table with the objects inpainted away">
+              <span class="bar" aria-hidden="true"></span>
+              <span class="knob glass is-dark" data-glass-scale="36" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></span>
+              <span class="tag l">Foreground objects</span><span class="tag r">Clean background</span>
+            </div>
+            <p class="pv-cap">Gemini boxes and labels the task-relevant objects, with a coarse mass and friction for each; the objects, robot and people are masked and inpainted away, leaving a clean background plate. Drag across to compare.</p>
+          </div>
+          <div class="pipe-view" data-view="2" role="tabpanel">
+            <div class="pv-media pv-assets">
+              <span class="pv-row-label">From the photo</span>
+              <div class="pv-crops"><figure><img src="./static/images/pipeline/obj0_cut.png" alt="Photo crop: black bowl"><figcaption>black bowl</figcaption></figure><figure><img src="./static/images/pipeline/obj1_cut.png" alt="Photo crop: white cup"><figcaption>white cup</figcaption></figure><figure><img src="./static/images/pipeline/obj2_cut.png" alt="Photo crop: stuffed tiger"><figcaption>stuffed tiger</figcaption></figure><figure><img src="./static/images/pipeline/obj3_cut.png" alt="Photo crop: dressing bottle"><figcaption>dressing bottle</figcaption></figure><figure><img src="./static/images/pipeline/obj4_cut.png" alt="Photo crop: toy wheel"><figcaption>toy wheel</figcaption></figure></div>
+              <span class="pv-flow" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="pv-row-label">Reconstructed 3D assets</span>
+              <div class="pv-turn"><video muted loop playsinline preload="none" poster="./static/images/pipeline/turntable.jpg" src="./static/videos/pipeline/turntable.mp4" aria-label="The five reconstructed object meshes turning"></video></div>
+            </div>
+            <p class="pv-cap">Each object is reconstructed as its own 3D asset with the estimated physical properties, ready to be placed in the scene and grasped.</p>
+          </div>
+          <div class="pipe-view" data-view="3" role="tabpanel">
+            <div class="pv-media"><video muted loop playsinline preload="none" poster="./static/images/pipeline/collider.jpg" src="./static/videos/pipeline/collider.mp4" aria-label="The Gaussian background turning into its collision mesh"></video>
+              <span class="pv-tag">3D Gaussians &rarr; collision mesh</span></div>
+            <p class="pv-cap">The background becomes a full-scene 3D Gaussian field for rendering, and a recovered collision mesh makes it physically usable rather than decorative.</p>
+          </div>
+          <div class="pipe-view" data-view="4" role="tabpanel">
+            <div class="pv-media pv-subs" data-subs>
+              <div class="pv-pane is-on" data-pane><video muted playsinline preload="none" poster="./static/images/pipeline/pose.jpg" src="./static/videos/pipeline/pose.mp4" aria-label="Object poses refined against the photo"></video></div>
+              <div class="pv-pane is-white" data-pane><video muted playsinline preload="none" poster="./static/images/pipeline/scale.jpg" src="./static/videos/pipeline/scale.mp4" aria-label="Scale search until the generated surfaces meet the metric depth points"></video></div>
+              <div class="pv-pane" data-pane><video muted playsinline preload="none" poster="./static/images/pipeline/plane.jpg" src="./static/videos/pipeline/plane.mp4" aria-label="Support plane fitted to the table"></video></div>
+              <div class="pv-subtabs glass is-dark" data-glass-scale="20" role="tablist" aria-label="Scene optimization">
+                <button type="button" class="is-on" data-sub>Object pose</button><button type="button" data-sub>Metric scale</button><button type="button" data-sub>Plane fitting</button>
+              </div>
+            </div>
+            <p class="pv-cap">A vision&ndash;geometry&ndash;physics loop refines where each object sits, a scale search puts the generated world in metric correspondence with the robot&rsquo;s depth, and stable support planes are fitted.</p>
+          </div>
+          <div class="pipe-view" data-view="5" role="tabpanel">
+            <div class="pv-media"><video muted loop playsinline preload="none" poster="./static/images/pipeline/twin.jpg" src="./static/videos/pipeline/twin.mp4" aria-label="Objects dropped into the reconstructed scene, settling under physics"></video>
+              <a class="pv-live btn glass is-dark is-press" href="#top" data-glass-scale="18">Step inside the live twin<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+            </div>
+            <p class="pv-cap">The interactable digital twin: the objects settle under physics on a background that renders from any viewpoint, wrist cameras included.</p>
           </div>
         </div>
+      </div>
+      <button class="paperfig" type="button" data-zoom-src="./static/images/reconstruction.png" data-zoom-alt="Paper figure: real-to-sim pipeline">View the paper figure</button>
+    </div>
 
-        <div class="method-part">
-          <h3 class="title is-4">Agentic progress scoring</h3>
-          <img src="./static/images/evaluation.png" alt="Evaluator synthesis: task instruction, privileged state and rollout observation feed a task specification, stage decomposition with weights, a strict success channel and a soft progress channel.">
-          <div class="content">
+    <div class="part">
+      <div class="part-head" data-reveal>
+        <h3><small>02</small>Agentic progress scoring</h3>
+        <div class="prose">
           <p>
             Realistic environments alone do not solve scoring. Given an instruction and sample
             trajectories, a coding agent resolves object references, decomposes the task into
@@ -300,9 +410,88 @@
             show exactly where execution stalled. Because the coding agent is invoked once per
             task rather than once per rollout, synthesis cost amortizes across the whole benchmark.
           </p>
-          </div>
         </div>
       </div>
+      <div class="evald" data-evald data-reveal>
+        <div class="ev-col">
+          <span class="ev-colhead">Inputs</span>
+          <div class="ev-card" style="--i:0"><span class="ev-n">1</span><h5>Task instruction</h5>
+            <p class="ev-quote" data-type="put toy bear into black bowl">&ldquo;put toy bear into black bowl&rdquo;</p></div>
+          <div class="ev-card" style="--i:1"><span class="ev-n">2</span><h5>Privileged simulator state</h5>
+            <ul class="ev-chips"><li>End-effector pose + gripper action</li><li>Pose and extent of all 5 objects</li></ul></div>
+          <div class="ev-card" style="--i:2"><span class="ev-n">3</span><h5>Rollout observation</h5>
+            <div class="ev-thumb"><video muted loop playsinline preload="none" data-visible-play poster="./static/images/rollouts/cosmos3.jpg" src="./static/videos/rollouts/cosmos3.mp4"></video></div>
+            <p class="ev-note">Consulted only when the scene or spatial terms are ambiguous.</p></div>
+        </div>
+        <div class="ev-arrow" aria-hidden="true"><i></i></div>
+        <div class="ev-col">
+          <span class="ev-colhead">Written once by the coding agent</span>
+          <div class="ev-card" style="--i:3"><span class="ev-n">4</span><h5>Task specification</h5>
+            <dl class="ev-spec">
+              <div><dt>archetype</dt><dd><code>place_in</code></dd></div>
+              <div><dt>actor</dt><dd>&ldquo;toy bear&rdquo; &rarr; stuffed tiger <em>obj&nbsp;2</em></dd></div>
+              <div><dt>receptacle</dt><dd>black bowl <em>obj&nbsp;0</em></dd></div>
+            </dl>
+            <figure class="ev-ground"><img src="./static/images/pipeline/grounding.jpg" loading="lazy" alt="The stuffed tiger circled and labelled as object 2"></figure>
+            <p class="ev-note">The label says tiger, the instruction says bear: the only plush toy in the scene is resolved as the actor.</p></div>
+          <div class="ev-card" style="--i:4"><span class="ev-n">5</span><h5>Stage decomposition &amp; weights</h5>
+            <ol class="ev-stages">
+              <li style="--c:#4c6ef5;--w:0.03"><span class="ev-sn">approach</span><span class="ev-req">start</span><span class="ev-wb"><i></i></span><b>0.03</b></li>
+              <li style="--c:#12b3c2;--w:0.05"><span class="ev-sn">engage</span><span class="ev-req">after approach</span><span class="ev-wb"><i></i></span><b>0.05</b></li>
+              <li style="--c:#37b24d;--w:0.07"><span class="ev-sn">lift</span><span class="ev-req">after engage &middot; 6&nbsp;cm</span><span class="ev-wb"><i></i></span><b>0.07</b></li>
+              <li style="--c:#f08c00;--w:0.25"><span class="ev-sn">transport</span><span class="ev-req">after engage</span><span class="ev-wb"><i></i></span><b>0.25</b></li>
+              <li style="--c:#e03131;--w:0.60"><span class="ev-sn">place in</span><span class="ev-req">after transport</span><span class="ev-wb"><i></i></span><b>0.60</b></li>
+            </ol></div>
+        </div>
+        <div class="ev-arrow" aria-hidden="true"><i></i></div>
+        <div class="ev-col">
+          <span class="ev-colhead">Run on every rollout, no model calls</span>
+          <div class="ev-card is-strict" style="--i:5"><span class="ev-n">6</span><h5>Strict channel &middot; success</h5>
+            <ul class="ev-checks">
+              <li>bear&rsquo;s centre over the bowl&rsquo;s mouth</li>
+              <li>underside &ge;&nbsp;2&nbsp;cm below the rim, above the base</li>
+              <li>bear at rest (&lt;&nbsp;5&nbsp;mm/s)</li>
+              <li>all of it &ge;&nbsp;0.9, held for 30 steps</li>
+            </ul>
+            <p class="ev-result">success = 1 only if all four hold</p></div>
+          <div class="ev-card is-soft" style="--i:6"><span class="ev-n">7</span><h5>Soft channel &middot; progress</h5>
+            <p class="ev-formula">score(t) = max<span>(</span>&nbsp;&Sigma;<sub>k</sub>&thinsp;w<sub>k</sub>&middot;smooth(soft<sub>k</sub>(t))&middot;gate<sub>k</sub>(t),&nbsp;terminal(t)&nbsp;<span>)</span></p>
+            <p class="ev-note">gate<sub>k</sub> = 0.25 + 0.75 &middot; running max of its prerequisites, so a lost grasp does not erase earlier credit.</p>
+            <div class="ev-meter"><span>Cosmos3 rollout</span><b data-count="1" data-dec="2">1.00</b><i><em></em></i></div></div>
+        </div>
+      </div>
+      <details class="ev-code">
+        <summary>The generated evaluator for this task, verbatim <code>droid2.py</code></summary>
+<pre><span class="c">"""droid2 — "put toy bear into black bowl"."""</span>
+
+<span class="k">from</span> evalkit.archetypes <span class="k">import</span> place_in
+<span class="k">from</span> evalkit.spec <span class="k">import</span> TaskSpec
+
+<span class="c"># 0 black bowl  1 white cup  2 stuffed tiger  3 dressing bottle  4 small black toy wheel
+# "toy bear" -> stuffed tiger (2): the only stuffed animal; the label disagrees on species
+# but nothing else in the scene is a plush toy.</span>
+BEAR, BOWL = <span class="n">2</span>, <span class="n">0</span>
+
+stages, terminal = place_in(BEAR, BOWL, lift_dz=<span class="n">0.06</span>)
+
+TASK = TaskSpec(
+    scene=<span class="s">"droid2"</span>,
+    instruction=<span class="s">"put toy bear into black bowl"</span>,
+    objects={<span class="s">"bear"</span>: BEAR, <span class="s">"bowl"</span>: BOWL},
+    stages=stages,
+    terminal=terminal,
+    notes=<span class="s">"Bear (11x13x7cm) barely fits the bowl mouth (15x15cm); placement is tight."</span>,
+)</pre>
+      </details>
+      <button class="paperfig" type="button" data-zoom-src="./static/images/evaluation.png" data-zoom-alt="Paper figure: evaluator synthesis">View the paper figure</button>
+
+      <div class="replay-head" data-reveal>
+        <h4>Watch an evaluator score real rollouts</h4>
+        <p>The same evaluator on four real rollouts of this task: the video, the stage it is in,
+          each stage term with its weight, and the progress score as it is computed. Click or drag
+          on the chart to scrub; pick a policy to replay it.</p>
+      </div>
+      <div data-replay></div>
     </div>
   </div>
 </section>
@@ -313,28 +502,27 @@
      A compact ranking; the full, sortable table lives at leaderboard/.
      Both are drawn by static/js/leaderboard.js.
      ===================================================================== -->
-<section class="section" id="leaderboard">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Leaderboard</h2>
-    <div class="content">
-      <p>
-        Six state-of-the-art generalist policies across 20 DROID-reconstructed environments.
-        Each policy uses its official DROID-finetuned checkpoint with no adaptation to our
-        environments, absolute joint-position control, and six rollouts per task over 1200
-        simulation steps. All policies share the same simulation parameters, robot configuration,
-        and camera setup, except that Cosmos3 receives one additional view to match its native
-        inference configuration.
-      </p>
+<section class="sec" id="leaderboard">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="kicker">Leaderboard</span>
+      <h2 class="h2">Six generalist policies,<br><span class="dim">twenty environments.</span></h2>
+      <div class="prose">
+        <p>
+          Six state-of-the-art generalist policies across 20 DROID-reconstructed environments.
+          Each policy uses its official DROID-finetuned checkpoint with no adaptation to our
+          environments, absolute joint-position control, and six rollouts per task over 1200
+          simulation steps. All policies share the same simulation parameters, robot configuration,
+          and camera setup, except that Cosmos3 receives one additional view to match its native
+          inference configuration.
+        </p>
+      </div>
     </div>
 
-    <div class="lb-card lb-mini" id="lb-preview" aria-label="Policy ranking by success rate"></div>
-    <div class="lb-mini-foot">
-      <p class="table-caption">
-        Success rate, macro-averaged over tasks, with 95% cluster-bootstrap confidence intervals.
-      </p>
-      <a class="lb-cta" href="./leaderboard/">
-        <span>Full leaderboard</span><span class="icon"><i class="fas fa-arrow-right"></i></span>
-      </a>
+    <div class="lb-mini" id="lb-preview" aria-label="Policy ranking by success rate"></div>
+    <div class="lb-foot">
+      <span>Success rate, macro-averaged over tasks, with 95% cluster-bootstrap confidence intervals.</span>
+      <a class="btn is-press" href="./leaderboard/">Full leaderboard<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </section>
@@ -342,15 +530,18 @@
 
 <!-- =====================================================================
      RESULTS
+     Every figure below is drawn by static/js/figures.js from
+     static/data/*.json (tools/export_figure_data.py).
      ===================================================================== -->
-<section class="section" id="results">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Results</h2>
+<section class="sec" id="results">
+  <div class="wrap">
+    <div data-reveal>
+      <span class="kicker">Results</span>
+      <h2 class="h2">What binary success hides,<br><span class="dim">and what the simulator changes.</span></h2>
+    </div>
 
-    <!-- Every figure below is drawn by static/js/figures.js from static/data/*.json
-         (tools/export_figure_data.py). -->
     <div class="fig-block">
-      <h3 class="title is-4">Stage-wise progress traces</h3>
+      <h3><small>01</small>Stage-wise progress traces</h3>
       <div class="paper-fig" data-figure="traces"></div>
       <p class="fig-caption">
         Four rollouts of &ldquo;put toy bear into black bowl&rdquo;. The ribbon shows the stage the
@@ -361,7 +552,7 @@
         in transport). <b>(d)</b> GR00T N1.7 reaches the bear but never closes on it (0.16, stuck in
         engage). Hover a plot to read the score over time.
       </p>
-      <div class="content">
+      <div class="prose">
         <p>
           Success and progress give the same policy ordering (see the leaderboard) but describe
           different things: success measures completion, progress also credits advances in rollouts
@@ -372,8 +563,8 @@
     </div>
 
     <div class="fig-block">
-      <h3 class="title is-4">Deployment fidelity and policy sensitivity</h3>
-      <div class="content">
+      <h3><small>02</small>Deployment fidelity and policy sensitivity</h3>
+      <div class="prose">
         <p>
           Three deployment choices that a real-to-sim benchmark has to make &mdash; the controller
           gains, how shadows are rendered, and whether the simulator waits for the policy &mdash; each
@@ -382,7 +573,7 @@
         </p>
       </div>
 
-      <h4 class="fig-subtitle">Controller gains</h4>
+      <h4 class="fig-sub">Controller gains</h4>
       <div class="paper-fig" data-figure="gains"></div>
       <p class="fig-caption">
         <b>(a)</b> Success rate and <b>(b)</b> mean progress under three PD-gain profiles: stock (Eden
@@ -390,7 +581,7 @@
         &pi;-policy rollouts). All three are fixed tables applied to every policy. &Delta; is the paired
         per-task difference from stock; error bars show 95% confidence intervals.
       </p>
-      <div class="content">
+      <div class="prose">
         <p>
           Neither system-identified profile improves on the stock gains for any tested policy: sysid-A
           lowers success for all three (most for GR00T-N1.7, &minus;0.12), and sysid-B costs MolmoAct-2
@@ -399,7 +590,7 @@
         </p>
       </div>
 
-      <h4 class="fig-subtitle">Shadow rendering</h4>
+      <h4 class="fig-sub">Shadow rendering</h4>
       <div class="paper-fig" data-figure="receiver"></div>
       <p class="fig-caption">
         <b>(a)</b> Success rate and <b>(b)</b> mean progress with a textured-mesh versus a
@@ -407,7 +598,7 @@
         &Delta; is the paired per-task difference (Gaussian composite &minus; textured mesh); error bars
         show 95% confidence intervals.
       </p>
-      <div class="content">
+      <div class="prose">
         <p>
           The two rendering configurations favor different policies. MolmoAct-2 does better with
           Gaussian compositing (+0.11 success), &pi;<sub>0.5</sub> with the textured receiver
@@ -415,7 +606,7 @@
         </p>
       </div>
 
-      <h4 class="fig-subtitle">Asynchronous execution</h4>
+      <h4 class="fig-sub">Asynchronous execution</h4>
       <div class="paper-fig" data-figure="async"></div>
       <p class="fig-caption">
         <b>(a)</b> Success rate and <b>(b)</b> mean progress under blocking execution (tint) and
@@ -423,7 +614,7 @@
         latency the asynchronous runner injects: each policy&rsquo;s own measured round-trip. Error bars
         show 95% confidence intervals.
       </p>
-      <div class="content">
+      <div class="prose">
         <p>
           Asynchronous execution advances the simulation while the policy computes its next action,
           so commands can land after the state that prompted them has changed. The effect depends on
@@ -436,7 +627,7 @@
     </div>
 
     <div class="fig-block">
-      <h3 class="title is-4">Validation of synthesized evaluators</h3>
+      <h3><small>03</small>Validation of synthesized evaluators</h3>
       <div class="paper-fig" data-figure="validation"></div>
       <p class="fig-caption">
         <b>Agreement with human progress scores on RobotArena&#8734;.</b> <b>(a)</b> Predicted versus
@@ -445,7 +636,7 @@
         evaluator and GVL (Gemini), using RobotArena&#8734;&rsquo;s reduction: the mean over the final 30%
         of frames. Error bars show 95% paired-bootstrap confidence intervals.
       </p>
-      <div class="content">
+      <div class="prose">
         <p>
           Applying the same synthesis procedure to RobotArena&#8734; tasks, the generated evaluators
           agree with human judgments more closely than GVL &mdash; higher Pearson, Spearman, and
@@ -463,41 +654,44 @@
 <!-- =====================================================================
      BIBTEX
      ===================================================================== -->
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <!-- TODO(bibtex): replace once the arXiv ID / venue is known. -->
-    <pre><code>@article{lo2026robotarena360,
+<section class="sec" id="BibTeX">
+  <div class="wrap" data-reveal>
+    <span class="kicker">BibTeX</span>
+    <div class="bib">
+      <button type="button" data-copy="#bibtex-src">Copy</button>
+      <!-- TODO(bibtex): replace once the arXiv ID / venue is known. -->
+      <pre id="bibtex-src">@article{lo2026robotarena360,
   title   = {RobotArena$\infty$ 360: Open-World Robot Evaluation with
              Simulation-Native Agentic Scoring},
   author  = {Lo, Pang-Chi and Yamazaki, Kashu and Jangir, Yash and
              Yang, Brian and Zhang, Yidi and Fragkiadaki, Katerina},
   journal = {arXiv preprint arXiv:TODO},
   year    = {2026},
-}</code></pre>
+}</pre>
+    </div>
   </div>
 </section>
 
 
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
-            Attribution-ShareAlike 4.0 International License</a>.
-            It is adapted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
-            project page.
-          </p>
-        </div>
-      </div>
-    </div>
+<footer class="foot">
+  <div class="wrap">
+    <p>
+      This website is licensed under a <a rel="license"
+        href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+      Attribution-ShareAlike 4.0 International License</a>.
+      It is adapted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+      project page.
+    </p>
+    <p>RobotArena&#8734; 360 &middot; Carnegie Mellon University &middot; Johns Hopkins University</p>
   </div>
 </footer>
 
-</div><!-- /.page-body -->
+</main>
 
+<div class="lightbox" data-lightbox aria-hidden="true"><img alt=""></div>
+
+<script src="./static/js/glass.js?v=20261026e"></script>
+<script src="./static/js/replay.js?v=20261026e"></script>
+<script src="./static/js/site.js?v=20261026e"></script>
 </body>
 </html>
